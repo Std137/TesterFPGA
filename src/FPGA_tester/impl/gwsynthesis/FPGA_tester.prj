@@ -8,6 +8,7 @@
         <File path="F:\github\TesterFPGA\FPGA_tester\src\led_port.sv" type="verilog"/>
         <File path="F:\github\TesterFPGA\FPGA_tester\src\mem.sv" type="verilog"/>
         <File path="F:\github\TesterFPGA\FPGA_tester\src\in_key.sv" type="verilog"/>
+        <File path="F:\github\TesterFPGA\FPGA_tester\src\reset.sv" type="verilog"/>
     </FileList>
     <OptionList>
         <Option type="disable_insert_pad" value="0"/>

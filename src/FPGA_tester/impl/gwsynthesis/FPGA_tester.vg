@@ -1,0 +1,68 @@
+//
+//Written by GowinSynthesis
+//Tool Version "V1.9.9.03 (64-bit)"
+//Tue Nov  5 17:30:58 2024
+
+//Source file index table:
+//file0 "\F:/github/TesterFPGA/FPGA_tester/src/top.sv"
+//file1 "\F:/github/TesterFPGA/FPGA_tester/src/led_port.sv"
+//file2 "\F:/github/TesterFPGA/FPGA_tester/src/mem.sv"
+//file3 "\F:/github/TesterFPGA/FPGA_tester/src/in_key.sv"
+//file4 "\F:/github/TesterFPGA/FPGA_tester/src/reset.sv"
+`timescale 100 ps/100 ps
+module tester_top (
+  clk,
+  uart_rx,
+  key_rst,
+  key_led,
+  uart_tx,
+  led
+)
+;
+input clk;
+input uart_rx;
+input key_rst;
+input key_led;
+output uart_tx;
+output [5:0] led;
+wire VCC;
+wire GND;
+  TBUF uart_tx_s0 (
+    .O(uart_tx),
+    .I(GND),
+    .OEN(VCC) 
+);
+  OBUF led_0_obuf (
+    .O(led[0]),
+    .I(GND) 
+);
+  OBUF led_1_obuf (
+    .O(led[1]),
+    .I(GND) 
+);
+  OBUF led_2_obuf (
+    .O(led[2]),
+    .I(GND) 
+);
+  OBUF led_3_obuf (
+    .O(led[3]),
+    .I(GND) 
+);
+  OBUF led_4_obuf (
+    .O(led[4]),
+    .I(GND) 
+);
+  OBUF led_5_obuf (
+    .O(led[5]),
+    .I(GND) 
+);
+  VCC VCC_cZ (
+    .V(VCC)
+);
+  GND GND_cZ (
+    .G(GND)
+);
+  GSR GSR (
+    .GSRI(VCC) 
+);
+endmodule /* tester_top */

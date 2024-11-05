@@ -1,18 +1,16 @@
-module uart
+module uart_tx
 #(
     parameter DELAY_FRAMES = 234 // 27,000,000 (27Mhz) / 115200 Baud rate
 )
 (
 input clk,
-input uart_rx,
-input btn1
-output uart_tx, 
-output reg [5:0] led,
+input in_data,
+output uart_tx,
 );
 
-    localparam HALF_DELAY_WAIT = (DELAY_FRAMES / 2);
+localparam HALF_DELAY_WAIT = (DELAY_FRAMES / 2);
 
-reg [3:0] rxState = 0;
+logic [3:0] rxState = 0;
 reg [12:0] rxCounter = 0;
 reg [2:0] rxBitNumber = 0;
 reg [7:0] dataIn = 0;

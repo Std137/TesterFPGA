@@ -16,6 +16,14 @@
   {
    "Path" : "F:/github/TesterFPGA/FPGA_tester/src/in_key.sv",
    "Type" : "verilog"
+  },
+  {
+   "Path" : "F:/github/TesterFPGA/FPGA_tester/src/reset.sv",
+   "Type" : "verilog"
+  },
+  {
+   "Path" : "F:/github/TesterFPGA/FPGA_tester/src/uart_tx.sv",
+   "Type" : "verilog"
   }
  ],
  "IncludePath" : [
