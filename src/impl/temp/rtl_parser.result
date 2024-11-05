@@ -1,0 +1,36 @@
+[
+ {
+  "InstFile" : "F:/github/TesterFPGA/FPGA_tester/src/top.sv",
+  "InstLine" : 1,
+  "InstName" : "tester_top",
+  "ModuleFile" : "F:/github/TesterFPGA/FPGA_tester/src/top.sv",
+  "ModuleLine" : 1,
+  "ModuleName" : "tester_top",
+  "SubInsts" : [
+   {
+    "InstFile" : "F:/github/TesterFPGA/FPGA_tester/src/top.sv",
+    "InstLine" : 23,
+    "InstName" : "lpt",
+    "ModuleFile" : "F:/github/TesterFPGA/FPGA_tester/src/led_port.sv",
+    "ModuleLine" : 1,
+    "ModuleName" : "led_port"
+   },
+   {
+    "InstFile" : "F:/github/TesterFPGA/FPGA_tester/src/top.sv",
+    "InstLine" : 36,
+    "InstName" : "key_press",
+    "ModuleFile" : "F:/github/TesterFPGA/FPGA_tester/src/in_key.sv",
+    "ModuleLine" : 1,
+    "ModuleName" : "key_press"
+   },
+   {
+    "InstFile" : "F:/github/TesterFPGA/FPGA_tester/src/top.sv",
+    "InstLine" : 49,
+    "InstName" : "memory",
+    "ModuleFile" : "F:/github/TesterFPGA/FPGA_tester/src/mem.sv",
+    "ModuleLine" : 1,
+    "ModuleName" : "mem"
+   }
+  ]
+ }
+]

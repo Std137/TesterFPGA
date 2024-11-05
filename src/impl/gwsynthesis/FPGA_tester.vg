@@ -1,0 +1,207 @@
+//
+//Written by GowinSynthesis
+//Tool Version "V1.9.9.03 (64-bit)"
+//Tue Nov  5 17:02:34 2024
+
+//Source file index table:
+//file0 "\F:/github/TesterFPGA/FPGA_tester/src/top.sv"
+//file1 "\F:/github/TesterFPGA/FPGA_tester/src/led_port.sv"
+//file2 "\F:/github/TesterFPGA/FPGA_tester/src/mem.sv"
+//file3 "\F:/github/TesterFPGA/FPGA_tester/src/in_key.sv"
+`timescale 100 ps/100 ps
+module led_port (
+  clk_d,
+  led_stat,
+  led_d
+)
+;
+input clk_d;
+input [5:5] led_stat;
+output [5:5] led_d;
+wire VCC;
+wire GND;
+  DFF led_stat_5_s0 (
+    .Q(led_d[5]),
+    .D(led_stat[5]),
+    .CLK(clk_d) 
+);
+  VCC VCC_cZ (
+    .V(VCC)
+);
+  GND GND_cZ (
+    .G(GND)
+);
+endmodule /* led_port */
+module key_press (
+  key_led_d,
+  clk_d,
+  led_stat,
+  key_en,
+  led_bit
+)
+;
+input key_led_d;
+input clk_d;
+input [5:5] led_stat;
+output key_en;
+output led_bit;
+wire n10_10;
+wire key_press_0;
+wire n15_8;
+wire n15_9;
+wire VCC;
+wire GND;
+  LUT4 n10_s3 (
+    .F(n10_10),
+    .I0(led_bit),
+    .I1(led_stat[5]),
+    .I2(key_press_0),
+    .I3(key_led_d) 
+);
+defparam n10_s3.INIT=16'hA3AA;
+  DFF key_press_s0 (
+    .Q(key_press_0),
+    .D(key_led_d),
+    .CLK(clk_d) 
+);
+  DFFR key_stat_s0 (
+    .Q(key_en),
+    .D(n15_9),
+    .CLK(clk_d),
+    .RESET(n15_8) 
+);
+  DFF key_led_s1 (
+    .Q(led_bit),
+    .D(n10_10),
+    .CLK(clk_d) 
+);
+defparam key_led_s1.INIT=1'b0;
+  INV n15_s4 (
+    .O(n15_8),
+    .I(key_led_d) 
+);
+  INV n15_s5 (
+    .O(n15_9),
+    .I(key_press_0) 
+);
+  VCC VCC_cZ (
+    .V(VCC)
+);
+  GND GND_cZ (
+    .G(GND)
+);
+endmodule /* key_press */
+module mem (
+  led_bit,
+  clk_d,
+  key_en,
+  led_stat
+)
+;
+input led_bit;
+input clk_d;
+input key_en;
+output [5:5] led_stat;
+wire VCC;
+wire GND;
+  DFFE mem_stat_5_s0 (
+    .Q(led_stat[5]),
+    .D(led_bit),
+    .CLK(clk_d),
+    .CE(key_en) 
+);
+  VCC VCC_cZ (
+    .V(VCC)
+);
+  GND GND_cZ (
+    .G(GND)
+);
+endmodule /* mem */
+module tester_top (
+  clk,
+  uart_rx,
+  key_rst,
+  key_led,
+  uart_tx,
+  led
+)
+;
+input clk;
+input uart_rx;
+input key_rst;
+input key_led;
+output uart_tx;
+output [5:0] led;
+wire clk_d;
+wire key_led_d;
+wire key_en;
+wire led_bit;
+wire [5:5] led_d;
+wire [5:5] led_stat;
+wire VCC;
+wire GND;
+  IBUF clk_ibuf (
+    .O(clk_d),
+    .I(clk) 
+);
+  IBUF key_led_ibuf (
+    .O(key_led_d),
+    .I(key_led) 
+);
+  TBUF uart_tx_s0 (
+    .O(uart_tx),
+    .I(GND),
+    .OEN(VCC) 
+);
+  OBUF led_0_obuf (
+    .O(led[0]),
+    .I(GND) 
+);
+  OBUF led_1_obuf (
+    .O(led[1]),
+    .I(GND) 
+);
+  OBUF led_2_obuf (
+    .O(led[2]),
+    .I(GND) 
+);
+  OBUF led_3_obuf (
+    .O(led[3]),
+    .I(GND) 
+);
+  OBUF led_4_obuf (
+    .O(led[4]),
+    .I(GND) 
+);
+  OBUF led_5_obuf (
+    .O(led[5]),
+    .I(led_d[5]) 
+);
+  led_port lpt (
+    .clk_d(clk_d),
+    .led_stat(led_stat[5]),
+    .led_d(led_d[5])
+);
+  key_press key_press (
+    .key_led_d(key_led_d),
+    .clk_d(clk_d),
+    .led_stat(led_stat[5]),
+    .key_en(key_en),
+    .led_bit(led_bit)
+);
+  mem memory (
+    .led_bit(led_bit),
+    .clk_d(clk_d),
+    .key_en(key_en),
+    .led_stat(led_stat[5])
+);
+  VCC VCC_cZ (
+    .V(VCC)
+);
+  GND GND_cZ (
+    .G(GND)
+);
+  GSR GSR (
+    .GSRI(VCC) 
+);
+endmodule /* tester_top */

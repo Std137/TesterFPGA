@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Module name="tester_top" T_Register="5(0)" T_Lut="3(0)">
+    <SubModule name="lpt" Register="1" T_Register="1(1)"/>
+    <SubModule name="key_press" Register="3" Lut="3" T_Register="3(3)" T_Lut="3(3)"/>
+    <SubModule name="memory" Register="1" T_Register="1(1)"/>
+</Module>
