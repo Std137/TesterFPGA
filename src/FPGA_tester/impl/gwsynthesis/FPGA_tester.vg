@@ -1,68 +1,48 @@
 //
 //Written by GowinSynthesis
-//Tool Version "V1.9.9.03 (64-bit)"
-//Tue Nov  5 17:30:58 2024
+//Product Version "V1.9.9 Beta-4 Education"
+//Wed Nov 06 06:06:24 2024
 
 //Source file index table:
-//file0 "\F:/github/TesterFPGA/FPGA_tester/src/top.sv"
-//file1 "\F:/github/TesterFPGA/FPGA_tester/src/led_port.sv"
-//file2 "\F:/github/TesterFPGA/FPGA_tester/src/mem.sv"
-//file3 "\F:/github/TesterFPGA/FPGA_tester/src/in_key.sv"
-//file4 "\F:/github/TesterFPGA/FPGA_tester/src/reset.sv"
-`timescale 100 ps/100 ps
-module tester_top (
-  clk,
-  uart_rx,
-  key_rst,
-  key_led,
-  uart_tx,
-  led
-)
-;
-input clk;
-input uart_rx;
-input key_rst;
-input key_led;
-output uart_tx;
-output [5:0] led;
-wire VCC;
-wire GND;
-  TBUF uart_tx_s0 (
-    .O(uart_tx),
-    .I(GND),
-    .OEN(VCC) 
-);
-  OBUF led_0_obuf (
-    .O(led[0]),
-    .I(GND) 
-);
-  OBUF led_1_obuf (
-    .O(led[1]),
-    .I(GND) 
-);
-  OBUF led_2_obuf (
-    .O(led[2]),
-    .I(GND) 
-);
-  OBUF led_3_obuf (
-    .O(led[3]),
-    .I(GND) 
-);
-  OBUF led_4_obuf (
-    .O(led[4]),
-    .I(GND) 
-);
-  OBUF led_5_obuf (
-    .O(led[5]),
-    .I(GND) 
-);
-  VCC VCC_cZ (
-    .V(VCC)
-);
-  GND GND_cZ (
-    .G(GND)
-);
-  GSR GSR (
-    .GSRI(VCC) 
-);
-endmodule /* tester_top */
+//file0 "\E:/Project/github/news_bot/TesterFPGA/src/FPGA_tester/src/in_key.sv"
+//file1 "\E:/Project/github/news_bot/TesterFPGA/src/FPGA_tester/src/led_port.sv"
+//file2 "\E:/Project/github/news_bot/TesterFPGA/src/FPGA_tester/src/mem.sv"
+//file3 "\E:/Project/github/news_bot/TesterFPGA/src/FPGA_tester/src/reset.sv"
+//file4 "\E:/Project/github/news_bot/TesterFPGA/src/FPGA_tester/src/top.sv"
+//file5 "\E:/Project/github/news_bot/TesterFPGA/src/FPGA_tester/src/uart_tx.sv"
+//file6 "\E:/Project/github/news_bot/TesterFPGA/src/FPGA_tester/src/fsm.sv"
+`pragma protect begin_protected
+`pragma protect version="2.3"
+`pragma protect author="default"
+`pragma protect author_info="default"
+`pragma protect encrypt_agent="GOWIN"
+`pragma protect encrypt_agent_info="GOWIN Encrypt Version 2.3"
+
+`pragma protect encoding=(enctype="base64", line_length=76, bytes=256)
+`pragma protect key_keyowner="GOWIN",key_keyname="GWK2023-09",key_method="rsa"
+`pragma protect key_block
+BvpkBs3AyNu/Sq3C0a2A8bNKNg1bhO5NZeX+K58oE7eBzPQI/zmk+jUYet/hkRdtz51tkiC1r6na
+DWlSvZtteaeDlbfvV9n7GIxDTdEyUEDBiC1S/bvBNxcoxnIb1clTlFXK0x+R9f13t4fGI6QZWXGO
+5kWWV9u2hFw5Y9FN9TQyuxZGlmsRdUYNCFV90qVghZaWkxm2/lJ6lDIX2ap65GCpjBija2Mh/3sM
+1pMGsQyZ1rQYVqI+ppAR7v8FL0RuXTOxp+rzoAGYFS2msUpG9p99C1H6wHNJDVECphRp/8cUWU/L
+hYF4avCyY6JszwM+usFevCg2VMKiK8naP37rAQ==
+
+`pragma protect encoding=(enctype="base64", line_length=76, bytes=736)
+`pragma protect data_keyowner="default-ip-vendor"
+`pragma protect data_keyname="default-ip-key"
+`pragma protect data_method="aes128-cfb"
+`pragma protect data_block
+QfB6xxPHVGAPu/8NQ7WQHRlQ/hxkBWHEq4/60quCO3AfQGhOSLOnvi3rixfoCM+6FVx1AXRS50Dn
+B/2olcIzp74oKlFjYQ3Qffy6Y31zjEA35G604WU6Cae+EWcVFHmjiq/Z6G2ubDda/lP+wUaXUKWX
+rSUzNsjfGwT3sE/5GL9zvop2+VGPzrTisQlTRW/mYjOyUcL8HKUTVyL+1C+mJQYWmmULrCKtNns8
+WvCXjlDAPpFeYEZ7DEYOoTN0tC0dtVkOB1A2TjxNNKv6y9FdkZ3LW6pyj8riPDBVJT8T+FMkidEy
+zNWMW8furXkCRC6nJk5Cy2QtI8Cym8XM8kwLsM4A//7euJiDM/b3nk3ev5PVhoTNEs8PM5yiNgfr
+yV9xRz00CXea++0dUl61wLksP6AtHlcupecez9JluiBHuS5YUNqb+wIzQOTXhPZXrbZKYscqRdeT
+FCXBAXoEj2gw263DGTO8z92puOS9B+2HZUqbgPt8rXLPhsVc8nVqFce+ciq6FqA7e4JDDLfLVV4u
+duc58WqeV1B2MbCFDtXm2L+K+/bOTnk9S0IiytAd9l0Cw3hQcuqAIJnhOOH5nK9A1HKe3q007msx
+DKIhaFuRF7SbAy/gjpHoutaBjnI8l//1bZIHm/r2EvCuAIshXOdKhnz2kroPCK3Mm3+X9Qltb+23
+i+gqKkWirulaqy+4m1mZes+LjxxA0t/fX0PIhhQQKyVQQQHod2MzYWumEEnIj8F995vFnL7Nkctz
+0cn5ll2NdWWo3/B7rKyduxz+0zz3mB1W6flLqkWvHDsYJSPgSfa0gsZJ7Ji5uTxixS2Yd5bGIa6U
+MDYrGEEl+NeCLB3a5TSpJOlX0PZlsPptrlwGKhdBzJYF3TybDZR1LMoEi6iZDTA+CY5gcl53PLY9
+Un6D6jHtHgBz8ZgBR6U27kb0RjtfR5GjstO7/ZB+satGJmyHiu/MQY1KGjr3LRqDZXKVtw==
+`pragma protect end_protected

@@ -1,47 +1,74 @@
-module key_press(
+module key_drv(
 input in_clk,
 input in_rst,
-input in_phiz_key,
-input in_mem_keyled,
-output led_bit,
-output key_en
+input in_key_switch,
+input in_key_reset,
+output o_key_switch,
+output o_key_reset
 );
 
-logic key_stat, key_press, key_led;
+logic key_swt_stat, key_swt_ps;
+logic key_rst_stat, key_rst_ps;
 
+assign o_key_switch = key_swt_stat;
+assign o_key_reset = key_rst_stat;
 
 always @(posedge in_clk)
     begin
         if (in_rst) 
             begin
-                key_led <= 0;
-                key_press <= 0;
-                key_stat <=0;
+                key_swt_ps <= 0;
+                key_swt_stat <= 0;
             end
         else
             begin
-                if (in_phiz_key) 
+                if (in_key_switch) 
                     begin
-                        if (!key_press)
+                        if (!key_swt_ps)
                             begin
-                                key_led <= ~in_mem_keyled;
-                                key_press <= 1;
-                                key_stat <= 1;
+                                key_swt_stat <= 1;
+                                key_swt_ps <= 1;
                             end
                         else
                             begin
-                                key_stat <= 0;
+                                key_swt_stat <= 0;
                             end
                     end
                 else
                     begin
-                        key_press <= 0;
-                        key_stat <= 0;
+                        key_swt_ps <= 0;
+                        key_swt_stat <= 0;
                     end
             end
     end
 
-assign led_bit = key_led;
-assign key_en = key_stat;
+always @(posedge in_clk)
+    begin
+        if (in_rst) 
+            begin
+                key_rst_ps <= 0;
+                key_rst_stat <= 0;
+            end
+        else
+            begin
+                if (in_key_switch) 
+                    begin
+                        if (!key_rst_ps)
+                            begin
+                                key_rst_stat <= 1;
+                                key_rst_ps <= 1;
+                            end
+                        else
+                            begin
+                                key_rst_stat <= 0;
+                            end
+                    end
+                else
+                    begin
+                        key_rst_ps <= 0;
+                        key_rst_stat <= 0;
+                    end
+            end
+    end
 
 endmodule

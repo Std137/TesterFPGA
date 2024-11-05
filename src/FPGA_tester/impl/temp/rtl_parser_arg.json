@@ -2,27 +2,31 @@
  "Device" : "GW1NR-9C",
  "Files" : [
   {
-   "Path" : "F:/github/TesterFPGA/FPGA_tester/src/top.sv",
+   "Path" : "E:/Project/github/news_bot/TesterFPGA/src/FPGA_tester/src/in_key.sv",
    "Type" : "verilog"
   },
   {
-   "Path" : "F:/github/TesterFPGA/FPGA_tester/src/led_port.sv",
+   "Path" : "E:/Project/github/news_bot/TesterFPGA/src/FPGA_tester/src/led_port.sv",
    "Type" : "verilog"
   },
   {
-   "Path" : "F:/github/TesterFPGA/FPGA_tester/src/mem.sv",
+   "Path" : "E:/Project/github/news_bot/TesterFPGA/src/FPGA_tester/src/mem.sv",
    "Type" : "verilog"
   },
   {
-   "Path" : "F:/github/TesterFPGA/FPGA_tester/src/in_key.sv",
+   "Path" : "E:/Project/github/news_bot/TesterFPGA/src/FPGA_tester/src/reset.sv",
    "Type" : "verilog"
   },
   {
-   "Path" : "F:/github/TesterFPGA/FPGA_tester/src/reset.sv",
+   "Path" : "E:/Project/github/news_bot/TesterFPGA/src/FPGA_tester/src/top.sv",
    "Type" : "verilog"
   },
   {
-   "Path" : "F:/github/TesterFPGA/FPGA_tester/src/uart_tx.sv",
+   "Path" : "E:/Project/github/news_bot/TesterFPGA/src/FPGA_tester/src/uart_tx.sv",
+   "Type" : "verilog"
+  },
+  {
+   "Path" : "E:/Project/github/news_bot/TesterFPGA/src/FPGA_tester/src/fsm.sv",
    "Type" : "verilog"
   }
  ],
@@ -30,8 +34,8 @@
 
  ],
  "LoopLimit" : 2000,
- "ResultFile" : "F:/github/TesterFPGA/FPGA_tester/impl/temp/rtl_parser.result",
- "Top" : "tester_top",
+ "ResultFile" : "E:/Project/github/news_bot/TesterFPGA/src/FPGA_tester/impl/temp/rtl_parser.result",
+ "Top" : "",
  "VerilogStd" : "sysv",
  "VhdlStd" : "vhdl_93"
 }

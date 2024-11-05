@@ -1,8 +1,8 @@
-module led_port(
+module led_drv(
 input in_clk,
 input in_rst,
 input [5:0] in_mem,           //Регистр управления свтодиодами
-output [5:0] led_out   //Физичесие выходы светодиодов
+output [5:0] led_out          //Физичесие выходы светодиодов
 );
 
 reg  [5:0] led_stat;

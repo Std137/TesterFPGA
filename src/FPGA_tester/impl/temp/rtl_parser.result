@@ -1,43 +1,59 @@
 [
  {
-  "InstFile" : "F:/github/TesterFPGA/FPGA_tester/src/top.sv",
+  "InstFile" : "E:/Project/github/news_bot/TesterFPGA/src/FPGA_tester/src/top.sv",
   "InstLine" : 1,
   "InstName" : "tester_top",
-  "ModuleFile" : "F:/github/TesterFPGA/FPGA_tester/src/top.sv",
+  "ModuleFile" : "E:/Project/github/news_bot/TesterFPGA/src/FPGA_tester/src/top.sv",
   "ModuleLine" : 1,
   "ModuleName" : "tester_top",
   "SubInsts" : [
    {
-    "InstFile" : "F:/github/TesterFPGA/FPGA_tester/src/top.sv",
-    "InstLine" : 23,
+    "InstFile" : "E:/Project/github/news_bot/TesterFPGA/src/FPGA_tester/src/top.sv",
+    "InstLine" : 41,
     "InstName" : "reset",
-    "ModuleFile" : "F:/github/TesterFPGA/FPGA_tester/src/reset.sv",
+    "ModuleFile" : "E:/Project/github/news_bot/TesterFPGA/src/FPGA_tester/src/reset.sv",
     "ModuleLine" : 1,
     "ModuleName" : "reset"
    },
    {
-    "InstFile" : "F:/github/TesterFPGA/FPGA_tester/src/top.sv",
-    "InstLine" : 35,
-    "InstName" : "lpt",
-    "ModuleFile" : "F:/github/TesterFPGA/FPGA_tester/src/led_port.sv",
+    "InstFile" : "E:/Project/github/news_bot/TesterFPGA/src/FPGA_tester/src/top.sv",
+    "InstLine" : 52,
+    "InstName" : "led_drv",
+    "ModuleFile" : "E:/Project/github/news_bot/TesterFPGA/src/FPGA_tester/src/led_port.sv",
     "ModuleLine" : 1,
-    "ModuleName" : "led_port"
+    "ModuleName" : "led_drv"
    },
    {
-    "InstFile" : "F:/github/TesterFPGA/FPGA_tester/src/top.sv",
-    "InstLine" : 48,
-    "InstName" : "key_press",
-    "ModuleFile" : "F:/github/TesterFPGA/FPGA_tester/src/in_key.sv",
+    "InstFile" : "E:/Project/github/news_bot/TesterFPGA/src/FPGA_tester/src/top.sv",
+    "InstLine" : 65,
+    "InstName" : "key_drv",
+    "ModuleFile" : "E:/Project/github/news_bot/TesterFPGA/src/FPGA_tester/src/in_key.sv",
     "ModuleLine" : 1,
-    "ModuleName" : "key_press"
+    "ModuleName" : "key_drv"
    },
    {
-    "InstFile" : "F:/github/TesterFPGA/FPGA_tester/src/top.sv",
-    "InstLine" : 61,
+    "InstFile" : "E:/Project/github/news_bot/TesterFPGA/src/FPGA_tester/src/top.sv",
+    "InstLine" : 78,
     "InstName" : "memory",
-    "ModuleFile" : "F:/github/TesterFPGA/FPGA_tester/src/mem.sv",
+    "ModuleFile" : "E:/Project/github/news_bot/TesterFPGA/src/FPGA_tester/src/mem.sv",
     "ModuleLine" : 1,
     "ModuleName" : "mem"
+   },
+   {
+    "InstFile" : "E:/Project/github/news_bot/TesterFPGA/src/FPGA_tester/src/top.sv",
+    "InstLine" : 92,
+    "InstName" : "uarttx",
+    "ModuleFile" : "E:/Project/github/news_bot/TesterFPGA/src/FPGA_tester/src/uart_tx.sv",
+    "ModuleLine" : 1,
+    "ModuleName" : "uart_tx"
+   },
+   {
+    "InstFile" : "E:/Project/github/news_bot/TesterFPGA/src/FPGA_tester/src/top.sv",
+    "InstLine" : 105,
+    "InstName" : "fsm",
+    "ModuleFile" : "E:/Project/github/news_bot/TesterFPGA/src/FPGA_tester/src/fsm.sv",
+    "ModuleLine" : 1,
+    "ModuleName" : "fsm"
    }
   ]
  }
