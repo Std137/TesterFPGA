@@ -5,13 +5,13 @@ input uart_push,                //Флаг загрузки данных в уа
 input key_push,                 //Флаг нажата клавиша вкл/выкл
 input reset_push,               //Флаг нажатой кнопки сброс
 input mem_wrt_rd,               //Флаг окончания записи в память
-input rx_done,                  //Флаг окончания передачи
+input tx_done,                  //Флаг окончания передачи
 input [5:0] mem,                //Состояние памяти
 input [7:0] i_uart_data,        //Данные из уарт
-input rx_busy,                  //Флаг готовности передатчика
+input tx_busy,                  //Флаг готовности передатчика
 output mem_wrt_en,              //Флаг разрешения записи в память
 output rst_fsm,                 //Флаг сброса по линии ФСМ
-output rx_start,                //флаг разрешенпия передачи
+output tx_start,                //флаг разрешенпия передачи
 output [5:0] mem_out            //Данные для памяти
 );
 
@@ -88,8 +88,8 @@ always @(posedge in_clk)
                 STATE_SEND:
                     begin
                         wrt_en_mem <= 0;
-                        if (!rx_busy) out_start_send <= 1;
-                        if (rx_done) nextState = STATE_WAIT;
+                        if (!tx_busy) out_start_send <= 1;
+                        if (tx_done) nextState = STATE_WAIT;
                     end
         endcase
     end

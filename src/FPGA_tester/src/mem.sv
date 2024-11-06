@@ -1,28 +1,34 @@
 module mem(
 input in_clk,
 input in_rst,
-input [7:0] in_uart,
-input in_uart_en,
-input  in_key,
-input in_key_en,
-output [5:0] out_mem
+input [5:0] in_mem,
+input mem_wrt_en,
+output [5:0] out_mem,
+output mem_wrt_rd
 );
 
-logic [5:0] mem_stat;
+logic [5:0] mem_reg;
+logic wrt_ready;
 
 always @(posedge in_clk)
     begin
         if(in_rst)
             begin
-                mem_stat <= 0;
+                wrt_ready <= 0;
+                mem_reg <= 0;
             end
         else
             begin
-                if (in_key_en) mem_stat[5]<= in_key;
-                if (in_uart_en) mem_stat <= in_uart[5:0];
+                if (mem_wrt_en) 
+                    begin
+                        mem_reg <= in_mem;
+                        wrt_ready <= 1;
+                    end
+                else wrt_ready <= 0;
             end
     end
 
-assign out_mem = mem_stat;
+assign out_mem = mem_reg;
+assign mem_wrt_rd = wrt_ready;
 
 endmodule

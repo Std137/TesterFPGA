@@ -4,13 +4,13 @@
     <Version>beta</Version>
     <Device id="GW1NR-9C" package="QFN88P" speed="6" partNumber="GW1NR-LV9QN88PC6/I5"/>
     <FileList>
+        <File path="E:\Project\github\news_bot\TesterFPGA\src\FPGA_tester\src\fsm.sv" type="verilog"/>
         <File path="E:\Project\github\news_bot\TesterFPGA\src\FPGA_tester\src\in_key.sv" type="verilog"/>
         <File path="E:\Project\github\news_bot\TesterFPGA\src\FPGA_tester\src\led_port.sv" type="verilog"/>
         <File path="E:\Project\github\news_bot\TesterFPGA\src\FPGA_tester\src\mem.sv" type="verilog"/>
         <File path="E:\Project\github\news_bot\TesterFPGA\src\FPGA_tester\src\reset.sv" type="verilog"/>
         <File path="E:\Project\github\news_bot\TesterFPGA\src\FPGA_tester\src\top.sv" type="verilog"/>
         <File path="E:\Project\github\news_bot\TesterFPGA\src\FPGA_tester\src\uart_tx.sv" type="verilog"/>
-        <File path="E:\Project\github\news_bot\TesterFPGA\src\FPGA_tester\src\fsm.sv" type="verilog"/>
     </FileList>
     <OptionList>
         <Option type="disable_insert_pad" value="0"/>

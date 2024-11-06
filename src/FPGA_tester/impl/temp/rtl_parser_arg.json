@@ -2,6 +2,10 @@
  "Device" : "GW1NR-9C",
  "Files" : [
   {
+   "Path" : "E:/Project/github/news_bot/TesterFPGA/src/FPGA_tester/src/fsm.sv",
+   "Type" : "verilog"
+  },
+  {
    "Path" : "E:/Project/github/news_bot/TesterFPGA/src/FPGA_tester/src/in_key.sv",
    "Type" : "verilog"
   },
@@ -23,10 +27,6 @@
   },
   {
    "Path" : "E:/Project/github/news_bot/TesterFPGA/src/FPGA_tester/src/uart_tx.sv",
-   "Type" : "verilog"
-  },
-  {
-   "Path" : "E:/Project/github/news_bot/TesterFPGA/src/FPGA_tester/src/fsm.sv",
    "Type" : "verilog"
   }
  ],

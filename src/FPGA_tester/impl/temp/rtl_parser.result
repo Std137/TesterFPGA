@@ -41,7 +41,7 @@
    },
    {
     "InstFile" : "E:/Project/github/news_bot/TesterFPGA/src/FPGA_tester/src/top.sv",
-    "InstLine" : 92,
+    "InstLine" : 91,
     "InstName" : "uarttx",
     "ModuleFile" : "E:/Project/github/news_bot/TesterFPGA/src/FPGA_tester/src/uart_tx.sv",
     "ModuleLine" : 1,
@@ -49,7 +49,7 @@
    },
    {
     "InstFile" : "E:/Project/github/news_bot/TesterFPGA/src/FPGA_tester/src/top.sv",
-    "InstLine" : 105,
+    "InstLine" : 104,
     "InstName" : "fsm",
     "ModuleFile" : "E:/Project/github/news_bot/TesterFPGA/src/FPGA_tester/src/fsm.sv",
     "ModuleLine" : 1,

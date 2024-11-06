@@ -1,2 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Module name="tester_top"/>
+<Module name="tester_top">
+ <SubModule name="reset" Register="2" Lut="3"/>
+ <SubModule name="led_drv" Register="1"/>
+ <SubModule name="key_drv" Register="2" Lut="3"/>
+ <SubModule name="memory" Register="2"/>
+ <SubModule name="fsm" Register="5" Lut="5"/>
+</Module>

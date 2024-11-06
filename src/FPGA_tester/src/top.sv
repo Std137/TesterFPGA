@@ -12,13 +12,13 @@ wire uart_rx_rdy;       //Флаг готовности данных в уарт
 wire key_push;          //Флаг нажатия клавишы вкл/выкл (key_press->fsm)
 wire reset_push;        //Флаг нажатой кнопки сброс (key_press->fsm)
 wire mem_wrt_rd;        //Флаг завершения записи в память (mem->fsm)
-wire uart_rx_done;      //Флаг окончания передачи (uart_tx->fsm)
+wire uart_tx_done;      //Флаг окончания передачи (uart_tx->fsm)
 wire [5:0] mem_out;     //Выход ячейки памяти (mem->fsm, mem->led_port)
 wire uart_rx_data;      //Полученные данные из уарт (uart_rx->fsm)
-wire uart_rx_bs;        //Флаг уарт tx занят (uart_tx->fsm)
+wire uart_tx_bs;        //Флаг уарт tx занят (uart_tx->fsm)
 wire mem_wrt_en;        //Флаг разрешения памяти сохранить данные (fsm->mem)
 wire rst_fsm;           //Флаг сброса по линии ФСМ (fsm->rst)
-wire uart_rx_en;        //флаг разрешения передачи (fsm_uart_tx)
+wire uart_tx_en;        //флаг разрешения передачи (fsm_uart_tx)
 wire mem_in;            //Линия данных записи в память (fsm->mem)
 wire rst;               //Линия сброса для всех устройств
 wire [5:0] led_reg;     //Линия заданного состояния светодиодов от драйвера, до выхода.
@@ -28,7 +28,7 @@ wire led_bit, key_en;   //проброс данные/готовность др�
 wire [7:0] uart_data;   //проброс линии данных от выход уарт до памяти
 
 wire fsm_rst;           //проброс программного сброса от fsm к драйверу сброса.
-wire uart_tx_done;
+
 wire uart_tx_busy;
 wire uart_tx_start; 
 
@@ -78,11 +78,10 @@ key_drv key_drv(
 mem memory(
 .in_clk(clk),
 .in_rst(rst),
-.in_uart(uart_data),
-.in_uart_en(u_data_en),
-.in_key(led_bit),
-.in_key_en(key_en),
-.out_mem(led_stat)
+.in_mem(mem_in),
+.mem_wrt_en(mem_wrt_en),
+.out_mem(mem_out),
+.mem_wrt_rd(mem_wrt_rd)
 );
 
 /*
@@ -91,10 +90,10 @@ mem memory(
 
 uart_tx uarttx(
 .i_clk(clk),
-.i_start(uart_tx_start),
-.i_data(led_stat),
+.i_start(uart_rx_en),
+.i_data(mem_out),
 .o_done(uart_tx_done),
-.o_busy(uart_tx_busy),
+.o_busy(uart_tx_bs),
 .o_dout(uart_tx)
 );
 
@@ -108,7 +107,7 @@ fsm fsm(
 .key_push(key_push),
 .reset_push(reset_push),
 .mem_wrt_rd(mem_wrt_rd),
-.rx_done(uart_rx_done),
+.tx_done(uart_tx_done),
 .mem(mem_out),
 .i_uart_data(uart_rx_data),
 .rx_busy(uart_rx_bs),
