@@ -1,97 +1,114 @@
 module fsm(
-input in_clk,
-input in_rst,
-input uart_push,                //Флаг загрузки данных в уарт
-input key_push,                 //Флаг нажата клавиша вкл/выкл
-input reset_push,               //Флаг нажатой кнопки сброс
-input mem_wrt_rd,               //Флаг окончания записи в память
-input tx_done,                  //Флаг окончания передачи
-input [5:0] mem,                //Состояние памяти
-input [7:0] i_uart_data,        //Данные из уарт
-input tx_busy,                  //Флаг готовности передатчика
-output mem_wrt_en,              //Флаг разрешения записи в память
-output rst_fsm,                 //Флаг сброса по линии ФСМ
-output tx_start,                //флаг разрешенпия передачи
-output [5:0] mem_out            //Данные для памяти
+    input logic in_clk,                // Системный тактовый сигнал
+    input logic in_rst,              	// Сброс (активный низкий)
+    input logic in_push_sw,            // Нажата кнопка switch
+    input logic in_push_rst,           // Нажата кнопка reset
+	 input logic in_mem_w_rd,				// Флаг, запись в память окончена
+	 input logic in_utx_s_rd,				// Флаг, uart_tx отправка данных окончена
+	 input logic in_utx_s_bs,				// Флаг, uart_tx занят
+	 input logic [5:0] in_mem,				// Шина данных чтения памяти
+	 input logic [7:0] in_urx,				// Шина данных чтения uart_rx
+	 output wire [5:0] out_mem,			// Шина данных записи в память
+	 output logic out_mem_w_en,			// Флаг, запись в память разрешена
+	 output logic out_utx_s_en,			// Флаг, отправка данных разрешена
+	 output logic out_rst					// Флаг, произвести сброс
 );
 
+typedef enum logic [2:0]
+    { 
+        STATE_IDLE  	 = 3'b000,
+        STATE_WRITE_C = 3'b001,
+		  STATE_WRITE_S =	3'b010,
+        STATE_RESET 	 = 3'b011,
+		  STATE_WAIT 	 = 3'b100,
+		  STATE_SEND  	 = 3'b101,
+		  XXX 			 = 'x
+	 } state_e;
 
-localparam	STATE_WAIT          = 2'b00,
- 			STATE_WRITE			= 2'b01,
-            STATE_SEND          = 2'b10;
+state_e current_state, next_state;
 
-logic out_start_send = 0;
-logic wrt_en_mem = 0;
-logic fsm_reset = 0;
-logic [5:0] fsm_mem = 0;
-logic [2:0] currentState, nextState;
+logic in_cmd_setup, in_cmd_reset, in_cmd_send, in_key_tr, in_rx_tr; 	
 
-wire  [1:0] uart_comand;
+assign in_cmd_setup = (in_urx[7:6] == 2'b10)?'1:'0; // Получена команда записать значения
+assign in_cmd_reset = (in_urx[7:6] == 2'b11)?'1:'0; // Получена команда сброса
+assign in_cmd_send  = (in_urx[7:6] == 2'b01)?'1:'0; // Получена команда отправить состояние
+assign out_mem = (in_key_tr)?{~in_mem[5],in_mem[4:0]}:(in_rx_tr)?in_urx[5:0]:in_mem[5:0];
 
-assign mem_out = fsm_mem;
-assign rx_start = out_start_send;           
-assign mem_wrt_en = wrt_en_mem;
-assign uart_comand = i_uart_data[7:6];
-assign rst_fsm = fsm_reset;
-
-
-always @(posedge in_clk) 
-    begin
-        currentState = nextState;
-        case(currentState)
-                default: 
-                    begin
-                        wrt_en_mem <= 0;
-                        out_start_send <= 0;
-                        fsm_reset <= 0;
-                        nextState = STATE_WAIT;
-                    end
-                STATE_WAIT:
-                    begin
-                        wrt_en_mem <= 0;
-                        out_start_send <= 0;
-                        if (key_push)                               //Нажата кнопка вкл/выкл
-                            begin
-                                fsm_mem <= {~mem[5],mem[4:0]};
-                                nextState = STATE_WRITE;
-                            end
-                        if (uart_push)                              //Получена данные уарт
-                            begin 
-                                if (uart_comand == 2'b01)           //Получена команда уарт отправить данные
-                                    begin
-                                        nextState = STATE_SEND;
-                                    end
-                                if (uart_comand == 2)               //Получена команда уарт сохранить данные
-                                    begin
-                                        fsm_mem <= {i_uart_data[5:0]};
-                                        nextState = STATE_WRITE;
-                                    end
-                                if (uart_comand == 3)               //Получена команда уарт сброс            
-                                    begin
-                                        fsm_reset = 1;
-                                        nextState = STATE_WAIT;
-                                    end
-                            end
-                         if (reset_push)                            //Нажата кнопка сброс
-                            begin
-                                fsm_reset = 1;
-                                nextState = STATE_WAIT;
-                            end
-                    end
-                
-                STATE_WRITE:
-                    begin
-                        wrt_en_mem <= 1;
-                        if (mem_wrt_rd) nextState = STATE_SEND;
-                    end
-
-                STATE_SEND:
-                    begin
-                        wrt_en_mem <= 0;
-                        if (!tx_busy) out_start_send <= 1;
-                        if (tx_done) nextState = STATE_WAIT;
-                    end
-        endcase
+    always_ff @(posedge in_clk, negedge in_rst) begin
+        if (!in_rst)
+            current_state <= STATE_IDLE;
+        else 
+            current_state <= next_state; 
     end
-
+	 
+	 always_comb begin
+		  next_state = XXX;
+        case (current_state)
+				STATE_IDLE: 	if  		(in_push_sw) 	next_state = STATE_WRITE_S;
+									else if 	(in_cmd_send) 	next_state = STATE_SEND;
+									else if 	(in_cmd_setup) next_state = STATE_WRITE_C;
+									else if 	(in_cmd_reset) next_state = STATE_RESET;
+									else if 	(in_push_rst)	next_state = STATE_RESET;
+									else 							next_state = STATE_IDLE;
+				
+            STATE_WRITE_C: if 		(in_mem_w_rd)	next_state = STATE_WAIT;
+									else							next_state = STATE_WRITE_C;
+				STATE_WRITE_S: if 		(in_mem_w_rd) 	next_state = STATE_WAIT;
+									else 			 				next_state = STATE_WRITE_S;
+            STATE_RESET:  									next_state = STATE_IDLE;
+				STATE_WAIT: 	if 		(!in_utx_s_bs)	next_state = STATE_SEND;
+									else							next_state = STATE_WAIT;
+				STATE_SEND: 	if 		(in_utx_s_rd)	next_state = STATE_IDLE;
+									else							next_state = STATE_SEND;
+				default:											next_state = XXX;
+			endcase
+		end
+	
+	 always_comb begin
+			case(current_state)
+					STATE_IDLE: 	begin	
+											out_mem_w_en = 0;
+											out_utx_s_en = 0;
+											out_rst 		 = 0;
+											in_key_tr = 0;
+											in_rx_tr = 0;
+										end
+					STATE_WRITE_C: begin
+											out_utx_s_en = 0;
+											out_rst 		 = 0;
+											out_mem_w_en = 1;
+											in_key_tr = 0;
+											in_rx_tr = 1;
+										end
+					STATE_WRITE_S: begin
+											out_utx_s_en = 0;
+											out_rst 		 = 0;
+											out_mem_w_en = 1;
+											in_key_tr = 1;
+											in_rx_tr = 0;
+										end
+					STATE_RESET: 	begin
+											out_mem_w_en = 0;
+											out_utx_s_en = 0;
+											out_rst 		 = 1;
+											in_key_tr = 0;
+											in_rx_tr = 0;
+										end
+					STATE_WAIT: 	begin
+											out_mem_w_en = 0;
+											out_rst 		 = 0;
+											out_utx_s_en = 1;
+											in_key_tr = 0;
+											in_rx_tr = 0;
+										end
+					STATE_SEND: 	begin
+											out_mem_w_en = 0;
+											out_rst 		 = 0;
+											out_utx_s_en = 1;
+											in_key_tr = 0;
+											in_rx_tr = 0;
+										end
+					default: 		  {in_rx_tr, in_key_tr, out_mem_w_en, out_utx_s_en, out_rst} = 'x;
+			endcase
+		end
 endmodule
