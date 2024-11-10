@@ -59,55 +59,55 @@ assign out_mem = (in_key_tr)?{~in_mem[5],in_mem[4:0]}:(in_rx_tr)?in_urx[5:0]:in_
  
   always_comb begin
     if (!in_rst) begin 
-      out_mem_w_en = '0;
-      out_utx_s_en = '0;
-      out_rst    = '1;
-      in_key_tr = '0;
-      in_rx_tr = '0;
+      out_mem_w_en = 0;
+      out_utx_s_en = 0;
+      out_rst    = 0;
+      in_key_tr = 0;
+      in_rx_tr = 0;
     end
     else begin
       case(current_state)
         STATE_IDLE:  begin 
-          out_mem_w_en = '0;
-          out_utx_s_en = '0;
-          out_rst    = '1;
-          in_key_tr = '0;
-          in_rx_tr = '0;
+          out_mem_w_en = 0;
+          out_utx_s_en = 0;
+          out_rst    = 0;
+          in_key_tr = 0;
+          in_rx_tr = 0;
         end
         STATE_WRITE_C: begin
-          out_utx_s_en = '0;
-           out_rst    = '1;
-          out_mem_w_en = '1;
-          in_key_tr = '0;
-          in_rx_tr = '1;
+          out_utx_s_en = 0;
+           out_rst    = 0;
+          out_mem_w_en = 1;
+          in_key_tr = 0;
+          in_rx_tr = 1;
         end
         STATE_WRITE_S: begin
-          out_utx_s_en = '0;
-          out_rst    = '1;
-          out_mem_w_en = '1;
-          in_key_tr = '1;
-          in_rx_tr = '0;
+          out_utx_s_en = 0;
+          out_rst    = 0;
+          out_mem_w_en = 1;
+          in_key_tr = 1;
+          in_rx_tr = 0;
         end
         STATE_RESET:  begin
-          out_mem_w_en = '0;
-          out_utx_s_en = '0;
-          out_rst    = '0;
-          in_key_tr = '0;
-          in_rx_tr = '0;
+          out_mem_w_en = 0;
+          out_utx_s_en = 0;
+          out_rst    = 1;
+          in_key_tr = 0;
+          in_rx_tr = 0;
         end
         STATE_WAIT:  begin
-          out_mem_w_en = '0;
-          out_rst    = '1;
-          out_utx_s_en = '1;
-          in_key_tr = '0;
-          in_rx_tr = '0;
+          out_mem_w_en = 0;
+          out_rst    = 0;
+          out_utx_s_en = 1;
+          in_key_tr = 0;
+          in_rx_tr = 0;
         end
         STATE_SEND:  begin
-          out_mem_w_en = '0;
-          out_rst    = '1;
-          out_utx_s_en = '1;
-          in_key_tr = '0;
-          in_rx_tr = '0;
+          out_mem_w_en = 0;
+          out_rst    = 0;
+          out_utx_s_en = 1;
+          in_key_tr = 0;
+          in_rx_tr = 0;
         end
         default:{in_rx_tr, in_key_tr, out_mem_w_en, out_utx_s_en, out_rst} = 'x;
       endcase

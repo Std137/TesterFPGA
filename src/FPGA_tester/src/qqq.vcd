@@ -1,5 +1,5 @@
 $date
-	Wed Nov 06 04:28:16 2024
+	Sun Nov 10 23:04:52 2024
 $end
 $version
 	Icarus Verilog
@@ -7,244 +7,144 @@ $end
 $timescale
 	1s
 $end
-$scope module test_fsm $end
-$var wire 1 ! rx_start $end
-$var wire 1 " mem_wrt_en $end
-$var wire 6 # mem_out [5:0] $end
-$var reg 8 $ i_uart_data [7:0] $end
-$var reg 1 % in_clk $end
-$var reg 1 & in_rst $end
-$var reg 1 ' key_data $end
-$var reg 1 ( key_push $end
-$var reg 6 ) mem [5:0] $end
-$var reg 1 * mem_wrt_rd $end
-$var reg 1 + reset_push $end
-$var reg 1 , rx_busy $end
-$var reg 1 - rx_done $end
-$var reg 1 . uart_push $end
-$scope module fsm $end
-$var wire 8 / i_uart_data [7:0] $end
-$var wire 1 % in_clk $end
-$var wire 1 & in_rst $end
-$var wire 1 ' key_data $end
-$var wire 1 ( key_push $end
-$var wire 6 0 mem [5:0] $end
-$var wire 6 1 mem_out [5:0] $end
-$var wire 1 " mem_wrt_en $end
-$var wire 1 * mem_wrt_rd $end
-$var wire 1 + reset_push $end
-$var wire 1 , rx_busy $end
-$var wire 1 - rx_done $end
-$var wire 1 ! rx_start $end
-$var wire 1 . uart_push $end
-$var wire 2 2 uart_comand [1:0] $end
-$var reg 3 3 currentState [2:0] $end
-$var reg 6 4 fsm_mem [5:0] $end
-$var reg 3 5 nextState [2:0] $end
-$var reg 1 6 out_start_send $end
-$var reg 1 7 wrt_en_mem $end
+$scope module test_rst $end
+$var wire 1 ! rst $end
+$var reg 1 " in_clk $end
+$var reg 1 # in_fsm_rst $end
+$scope module reset $end
+$var wire 1 " in_clk $end
+$var wire 1 # in_fsm_rst $end
+$var wire 1 ! rst $end
+$var reg 3 $ count [2:0] $end
+$var reg 1 % start $end
+$var reg 1 & stat $end
 $upscope $end
 $upscope $end
 $enddefinitions $end
+$comment Show the parameter values. $end
+$dumpall
+$end
 #0
 $dumpvars
-x7
-x6
-bx 5
-b0 4
-bx 3
-b0 2
-b0 1
-b10101 0
-b0 /
-0.
-0-
-1,
-0+
-0*
-b10101 )
-0(
-1'
-0&
-0%
-b0 $
-b0 #
-x"
+x&
+x%
+bx $
+0#
+0"
 x!
 $end
 #1
-b0 5
-1%
+0%
+1&
+1"
 #2
-0%
+0"
 #3
-b0 3
+0!
+b0 $
 1%
+1"
 #4
-0%
-1(
+0"
 #5
-b110101 #
-b110101 1
-b110101 4
-b1 5
-1%
+b1 $
+1"
 #6
-0%
+0"
 #7
-b1 3
-1%
+b10 $
+1"
 #8
-0%
-0(
+0"
 #9
-b10 5
-1%
-1*
+b11 $
+1"
 #10
-0%
+0"
 #11
-b10 3
-1%
+1!
+b100 $
+1"
 #12
-0%
+0"
+1#
 #13
-1%
-0*
+0&
+1"
 #14
-0%
-1-
+0"
 #15
-b0 5
-1%
+1"
 #16
-0%
+0"
 #17
-b0 3
-1%
+1"
 #18
-0%
-0-
+0"
 #19
-b1 2
-1%
-b1010101 $
-b1010101 /
+1"
 #20
-0%
-1.
+0"
 #21
-b10 5
-1%
+1"
 #22
-0%
+0"
 #23
-b10 3
-1%
+0%
+1&
+1"
+0#
 #24
-0%
-0.
+0"
 #25
-b0 5
+0!
 1%
-1-
+0&
+b0 $
+1"
+1#
 #26
-0%
+0"
 #27
-b0 3
-1%
+b1 $
+1"
 #28
-0%
+0"
 #29
-1%
-0-
+b10 $
+1"
 #30
-b10 2
-0%
-b10010101 $
-b10010101 /
+0"
 #31
-b10101 #
-b10101 1
-b10101 4
-b1 5
-1%
-1.
+b11 $
+1"
 #32
-0%
+0"
 #33
-b1 3
-1%
+1!
+b100 $
+1"
 #34
-0%
+0"
 #35
-1%
-0.
+1"
 #36
-0%
-1*
+0"
 #37
-b10 5
-1%
+1"
 #38
-0%
+0"
 #39
-b10 3
-1%
+1"
 #40
-0%
-0*
+0"
 #41
-b0 5
-1%
-1-
+1"
 #42
-0%
+0"
 #43
-b0 3
-1%
+1"
 #44
-0%
+0"
 #45
-1%
-0-
-#46
-0%
-#47
-1%
-#48
-0%
-#49
-1%
-#50
-0%
-#51
-1%
-#52
-0%
-#53
-1%
-#54
-0%
-#55
-1%
-#56
-0%
-#57
-1%
-#58
-0%
-#59
-1%
-#60
-0%
-#61
-1%
-#62
-0%
-#63
-1%
-#64
-0%
-#65
-1%
+1"

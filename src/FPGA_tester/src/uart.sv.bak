@@ -1,12 +1,11 @@
-/*
-module uart_txa
+module uart_tx
 #(
     parameter DELAY_FRAMES = 234 // 27,000,000 (27Mhz) / 115200 Baud rate
 )
 (
 input clk,
 input in_data,
-output uart_tx
+output uart_tx,
 );
 
 localparam HALF_DELAY_WAIT = (DELAY_FRAMES / 2);
@@ -72,4 +71,3 @@ always @(posedge clk) begin
     end
 end
 endmodule
-*/
