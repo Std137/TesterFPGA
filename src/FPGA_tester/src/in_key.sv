@@ -1,74 +1,53 @@
 module key_drv(
-input in_clk,
-input in_rst,
-input in_key_switch,
-input in_key_reset,
-output o_key_switch,
-output o_key_reset
+input logic in_clk,
+input logic in_rst,
+input logic in_key_switch,
+input logic in_key_reset,
+output logic o_key_switch,
+output logic o_key_reset
 );
 
-logic key_swt_stat, key_swt_ps;
-logic key_rst_stat, key_rst_ps;
+logic stat_reset, stat_switch;
 
-assign o_key_switch = key_swt_stat;
-assign o_key_reset = key_rst_stat;
+//  Р вЂњР ВµР Р…Р ВµРЎР‚Р В°РЎвЂљР С•РЎР‚ Р В·Р В°Р Т‘Р ВµР В¶Р С”Р С‘
+always_ff @(posedge in_clk)
+  if (stat_switch)
+    if  (in_key_switch) begin
+                     stat_switch <= '0;
+                     o_key_switch <= '1;
+                     end
+    else             begin
+                     stat_switch <= '1;
+                     o_key_switch <= '1;
+                     end
+  else
+    if  (in_key_switch) begin
+                     stat_switch <= '0;
+                     o_key_switch <= '1;
+                     end
+    else             begin
+                     stat_switch <= '1;
+                     o_key_switch <= '0;
+                     end
 
-always @(posedge in_clk)
-    begin
-        if (in_rst) 
-            begin
-                key_swt_ps <= 0;
-                key_swt_stat <= 0;
-            end
-        else
-            begin
-                if (in_key_switch) 
-                    begin
-                        if (!key_swt_ps)
-                            begin
-                                key_swt_stat <= 1;
-                                key_swt_ps <= 1;
-                            end
-                        else
-                            begin
-                                key_swt_stat <= 0;
-                            end
-                    end
-                else
-                    begin
-                        key_swt_ps <= 0;
-                        key_swt_stat <= 0;
-                    end
-            end
-    end
-
-always @(posedge in_clk)
-    begin
-        if (in_rst) 
-            begin
-                key_rst_ps <= 0;
-                key_rst_stat <= 0;
-            end
-        else
-            begin
-                if (in_key_switch) 
-                    begin
-                        if (!key_rst_ps)
-                            begin
-                                key_rst_stat <= 1;
-                                key_rst_ps <= 1;
-                            end
-                        else
-                            begin
-                                key_rst_stat <= 0;
-                            end
-                    end
-                else
-                    begin
-                        key_rst_ps <= 0;
-                        key_rst_stat <= 0;
-                    end
-            end
-    end
+always_ff @(posedge in_clk)
+  if (stat_reset)
+    if  (in_key_reset) begin
+                     stat_reset <= '0;
+                     o_key_reset <= '1;
+                     end
+    else             begin
+                     stat_reset <= '1;
+                     o_key_reset <= '1;
+                     end
+  else
+    if  (in_key_reset) begin
+                     stat_reset <= '0;
+                     o_key_reset <= '1;
+                     end
+    else             begin
+                     stat_reset <= '1;
+                     o_key_reset <= '0;
+                     end
 
 endmodule
