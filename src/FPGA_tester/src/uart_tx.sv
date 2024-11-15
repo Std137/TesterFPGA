@@ -116,3 +116,20 @@ always_comb begin
     end
   end
 endmodule 
+
+always_ff @(posedge in_clk) begin
+   if (!in_rst) ticks_counter <= '0;
+   else 
+     if (currentState == STATE_SEND_WAIT)
+       if (ticks_counter_ovf) ticks_counter <= 0;
+       else ticks_counter <= ticks_counter + 1;
+  end
+
+always_ff @(posedge in_clk) begin
+   if (!in_rst) tx_bit_counter <= 4'b1010;
+   else 
+    if (currentState == STATE_SEND_BITS)
+      if (tx_bit_counter_ovf) tx_bit_counter <= 4'b1010;
+      else tx_bit_counter <= tx_bit_counter - 1'b1;
+  end
+
