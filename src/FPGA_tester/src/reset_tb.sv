@@ -1,8 +1,8 @@
 module test_rst();
 
-logic in_clk = 0;
-logic in_fsm_rst = 0;
-logic rst;
+logic in_clk = '0;
+logic in_fsm_rst = 1'bx;
+logic out_rst;
 
 reset reset(.*);
 
@@ -11,10 +11,11 @@ reset reset(.*);
 
 initial 
     begin
-    #10 in_fsm_rst = 0;
-    #2 in_fsm_rst = 1;
-    #11 in_fsm_rst = 0;
-    #2 in_fsm_rst = 1;
+    #12 in_fsm_rst = 1;
+    #6 in_fsm_rst = 0;
+    #11 in_fsm_rst = 1;
+    #6 in_fsm_rst = 0;
+    #11 in_fsm_rst = 1;
     #20 $finish;
     end
 

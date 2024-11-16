@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Module name="tester_top">
- <SubModule name="reset" Register="2" Lut="3"/>
- <SubModule name="led_drv" Register="1"/>
- <SubModule name="key_drv" Register="2" Lut="3"/>
- <SubModule name="memory" Register="2"/>
- <SubModule name="fsm" Register="5" Lut="5"/>
+<Module name="tester_top" T_Register="84(0)" T_Alu="18(0)" T_Lut="54(0)">
+    <SubModule name="u_rx" Register="32" Alu="11" Lut="9" T_Register="32(32)" T_Alu="11(11)" T_Lut="9(9)"/>
+    <SubModule name="u_tx" Register="24" Alu="7" Lut="19" T_Register="24(24)" T_Alu="7(7)" T_Lut="19(19)"/>
+    <SubModule name="mem" Register="7" T_Register="7(7)"/>
+    <SubModule name="key_drv" Register="2" T_Register="2(2)"/>
+    <SubModule name="led_drv" Register="6" T_Register="6(6)"/>
+    <SubModule name="reset" Register="4" Lut="4" T_Register="4(4)" T_Lut="4(4)"/>
+    <SubModule name="fsm" Register="9" Lut="22" T_Register="9(9)" T_Lut="22(22)"/>
 </Module>

@@ -19,22 +19,25 @@ module fsm(
 
 state_e current_state, next_state;
 
-logic in_cmd_setup, in_cmd_reset, in_cmd_send, in_key_tr, in_rx_tr;  
+logic in_cmd_setup, in_cmd_reset, in_cmd_send;
+
+logic [5:0] mem_reg, mem_c;
 
 assign in_cmd_setup = (in_urx[7:6] == 2'b10)?'1:'0; // Получена команда записать значения
 assign in_cmd_reset = (in_urx[7:6] == 2'b11)?'1:'0; // Получена команда сброса
-assign in_cmd_send  = (in_urx[7:6] == 2'b01)?'1:'0; // Получена команда отправить состояние
+assign in_cmd_send  = (in_urx[7:6] == 2'b01)?'1:'0; // Получена команда отправить состояние(in_rx_tr)?in_urx[5:0]:in_mem;
 
-assign out_mem = (in_key_tr)?{~in_mem[5],in_mem[4:0]}:(in_rx_tr)?in_urx[5:0]:in_mem[5:0];
+assign out_mem = mem_reg;
+assign mem_c = {(!in_mem[5]),in_mem [4:0]};
   
-  always_ff @(posedge in_clk, negedge in_rst) begin
+always_ff @(posedge in_clk, negedge in_rst) begin
     if (!in_rst)
       current_state <= STATE_IDLE;
     else 
       current_state <= next_state; 
   end
   
-  always_comb begin
+always_comb begin
     next_state = XXX;
     case (current_state)
       STATE_IDLE:    if       (in_push_sw)   next_state = STATE_WRITE_S;
@@ -56,61 +59,28 @@ assign out_mem = (in_key_tr)?{~in_mem[5],in_mem[4:0]}:(in_rx_tr)?in_urx[5:0]:in_
       default:                               next_state = XXX;
     endcase
   end
- 
-  always_comb begin
-    if (!in_rst) begin 
-      out_mem_w_en = '0;
-      out_utx_s_en = '0;
-      out_rst    = '1;
-      in_key_tr = '0;
-      in_rx_tr = '0;
-    end
-    else begin
-      case(current_state)
-        STATE_IDLE:  begin 
-          out_mem_w_en = '0;
-          out_utx_s_en = '0;
-          out_rst    = '1;
-          in_key_tr = '0;
-          in_rx_tr = '0;
-        end
-        STATE_WRITE_C: begin
-          out_utx_s_en = '0;
-           out_rst    = '1;
-          out_mem_w_en = '1;
-          in_key_tr = '0;
-          in_rx_tr = '1;
-        end
-        STATE_WRITE_S: begin
-          out_utx_s_en = '0;
-          out_rst    = '1;
-          out_mem_w_en = '1;
-          in_key_tr = '1;
-          in_rx_tr = '0;
-        end
-        STATE_RESET:  begin
-          out_mem_w_en = '0;
-          out_utx_s_en = '0;
-          out_rst    = '0;
-          in_key_tr = '0;
-          in_rx_tr = '0;
-        end
-        STATE_WAIT:  begin
-          out_mem_w_en = '0;
-          out_rst    = '1;
-          out_utx_s_en = '1;
-          in_key_tr = '0;
-          in_rx_tr = '0;
-        end
-        STATE_SEND:  begin
-          out_mem_w_en = '0;
-          out_rst    = '1;
-          out_utx_s_en = '1;
-          in_key_tr = '0;
-          in_rx_tr = '0;
-        end
-        default:{in_rx_tr, in_key_tr, out_mem_w_en, out_utx_s_en, out_rst} = 'x;
-      endcase
-    end
-  end
+  
+always_ff @(posedge in_clk)
+  if ((current_state == 3'b001)) mem_reg <= in_urx[5:0];
+    else if ((current_state == 3'b010)) mem_reg <= mem_c;
+      else mem_reg <= in_mem;
+      
+always_comb
+    if (!in_rst) out_mem_w_en = '0;
+    else if ((current_state == 3'b001) || (current_state == 3'b010)) 
+            out_mem_w_en = '1;
+         else out_mem_w_en = '0;
+
+always_comb
+    if (!in_rst) out_utx_s_en = '0;
+    else if ((current_state == 3'b100) || (current_state == 3'b101)) 
+            out_utx_s_en = '1;
+         else out_utx_s_en = '0;
+         
+always_comb 
+    if (!in_rst) out_rst = '1;
+    else if ((current_state == 3'b011)) 
+            out_rst = '0;
+         else out_rst = '1;
+
 endmodule

@@ -1,8 +1,8 @@
--d E:\Project\github\news_bot\TesterFPGA\src\FPGA_tester\impl\gwsynthesis\FPGA_tester.vg
+-d F:\github\TesterFPGA\TesterFPGA\src\FPGA_tester\impl\gwsynthesis\FPGA_tester.vg
 -p GW1NR-9C-QFN88P-6
 -pn GW1NR-LV9QN88PC6/I5
--cst E:\Project\github\news_bot\TesterFPGA\src\FPGA_tester\src\out.cst
--cfg E:\Project\github\news_bot\TesterFPGA\src\FPGA_tester\impl\pnr\device.cfg
+-cst F:\github\TesterFPGA\TesterFPGA\src\FPGA_tester\src\FPGA_tester.cst
+-cfg F:\github\TesterFPGA\TesterFPGA\src\FPGA_tester\impl\pnr\device.cfg
 -bit
 -tr
 -ph
@@ -10,3 +10,4 @@
 -cst_error
 -correct_hold 1
 -route_maxfan 23
+-global_freq 50.000

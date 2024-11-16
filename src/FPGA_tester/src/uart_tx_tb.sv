@@ -1,34 +1,35 @@
-module u_tx_tb();
+module tb ();
 
+logic [5:0] in_mem;
 logic in_clk = '0;
-logic in_rst = 'x;
-logic in_start = 'x;
-logic [5:0] in_data = 'x;
-logic out_done;
-logic out_busy;
-logic out_tx;
-
-
-uart_tx u_tx(.*);
+logic in_rst;
+logic in_utx_st;
+logic out_rx;
+logic out_utx_bs;
+logic out_utx_rd;
+  
+uart_tx uart_tx(.*);
 
 always
-  #1  in_clk = ~in_clk;
+        #1 in_clk = ~in_clk;
 
-initial 
-    begin
-    #8 in_rst = '0;
-	 #8 in_rst = '1;
-	 #10 in_data = 6'b101010;
-		  in_start = '1;
-    #2  in_start = '0;
-	 #5000 in_data = 6'b010101;
-		  in_start = '1;
-    #5000 $finish;
-    end
-
-  initial begin
-    $dumpfile("qqq.vcd");
+initial  begin
+               in_rst = '0;
+        #4     in_rst = '1;
+               in_utx_st = '0;
+        #4     in_mem = 6'b101010;
+        #2     in_utx_st = '1;
+        #2     in_utx_st = '0;
+        #4900  in_mem = 6'b011111;
+        #2     in_utx_st = '1;
+        #2     in_utx_st = '0;
+        #1000  in_rst = '0;
+        #4900  $finish;
+      end
+      
+initial begin
+    $dumpfile("test.vcd");
     $dumpvars();
-  end
+end
 
 endmodule

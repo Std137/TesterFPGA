@@ -1,0 +1,100 @@
+[
+ {
+  "InstFile" : "F:/github/TesterFPGA/TesterFPGA/src/FPGA_tester/src/top.sv",
+  "InstLine" : 1,
+  "InstName" : "tester_top",
+  "Mode" : 1,
+  "ModuleFile" : "F:/github/TesterFPGA/TesterFPGA/src/FPGA_tester/src/top.sv",
+  "ModuleLine" : 1,
+  "ModuleName" : "tester_top",
+  "Process" : 0,
+  "SetMode" : false,
+  "SetProcess" : false,
+  "SubNodes" : [
+   {
+    "InstFile" : "F:/github/TesterFPGA/TesterFPGA/src/FPGA_tester/src/top.sv",
+    "InstLine" : 28,
+    "InstName" : "u_rx",
+    "Mode" : 1,
+    "ModuleFile" : "F:/github/TesterFPGA/TesterFPGA/src/FPGA_tester/src/uart_rx.sv",
+    "ModuleLine" : 1,
+    "ModuleName" : "uart_rx",
+    "Process" : 0,
+    "SetMode" : false,
+    "SetProcess" : false
+   },
+   {
+    "InstFile" : "F:/github/TesterFPGA/TesterFPGA/src/FPGA_tester/src/top.sv",
+    "InstLine" : 37,
+    "InstName" : "u_tx",
+    "Mode" : 1,
+    "ModuleFile" : "F:/github/TesterFPGA/TesterFPGA/src/FPGA_tester/src/uart_tx.sv",
+    "ModuleLine" : 1,
+    "ModuleName" : "uart_tx",
+    "Process" : 0,
+    "SetMode" : false,
+    "SetProcess" : false
+   },
+   {
+    "InstFile" : "F:/github/TesterFPGA/TesterFPGA/src/FPGA_tester/src/top.sv",
+    "InstLine" : 48,
+    "InstName" : "mem",
+    "Mode" : 1,
+    "ModuleFile" : "F:/github/TesterFPGA/TesterFPGA/src/FPGA_tester/src/mem.sv",
+    "ModuleLine" : 1,
+    "ModuleName" : "mem",
+    "Process" : 0,
+    "SetMode" : false,
+    "SetProcess" : false
+   },
+   {
+    "InstFile" : "F:/github/TesterFPGA/TesterFPGA/src/FPGA_tester/src/top.sv",
+    "InstLine" : 57,
+    "InstName" : "key_drv",
+    "Mode" : 1,
+    "ModuleFile" : "F:/github/TesterFPGA/TesterFPGA/src/FPGA_tester/src/in_key.sv",
+    "ModuleLine" : 1,
+    "ModuleName" : "key_drv",
+    "Process" : 0,
+    "SetMode" : false,
+    "SetProcess" : false
+   },
+   {
+    "InstFile" : "F:/github/TesterFPGA/TesterFPGA/src/FPGA_tester/src/top.sv",
+    "InstLine" : 67,
+    "InstName" : "led_drv",
+    "Mode" : 1,
+    "ModuleFile" : "F:/github/TesterFPGA/TesterFPGA/src/FPGA_tester/src/led_port.sv",
+    "ModuleLine" : 1,
+    "ModuleName" : "led_drv",
+    "Process" : 0,
+    "SetMode" : false,
+    "SetProcess" : false
+   },
+   {
+    "InstFile" : "F:/github/TesterFPGA/TesterFPGA/src/FPGA_tester/src/top.sv",
+    "InstLine" : 74,
+    "InstName" : "reset",
+    "Mode" : 1,
+    "ModuleFile" : "F:/github/TesterFPGA/TesterFPGA/src/FPGA_tester/src/reset.sv",
+    "ModuleLine" : 1,
+    "ModuleName" : "reset",
+    "Process" : 0,
+    "SetMode" : false,
+    "SetProcess" : false
+   },
+   {
+    "InstFile" : "F:/github/TesterFPGA/TesterFPGA/src/FPGA_tester/src/top.sv",
+    "InstLine" : 81,
+    "InstName" : "fsm",
+    "Mode" : 1,
+    "ModuleFile" : "F:/github/TesterFPGA/TesterFPGA/src/FPGA_tester/src/fsm.sv",
+    "ModuleLine" : 4,
+    "ModuleName" : "fsm",
+    "Process" : 0,
+    "SetMode" : false,
+    "SetProcess" : false
+   }
+  ]
+ }
+]
