@@ -13,6 +13,7 @@
         <File path="F:\github\TesterFPGA\TesterFPGA\src\FPGA_tester\src\reset.sv" type="verilog"/>
         <File path="F:\github\TesterFPGA\TesterFPGA\src\FPGA_tester\src\reset_tb.sv" type="verilog"/>
         <File path="F:\github\TesterFPGA\TesterFPGA\src\FPGA_tester\src\top.sv" type="verilog"/>
+        <File path="F:\github\TesterFPGA\TesterFPGA\src\FPGA_tester\src\top_tb.sv" type="verilog"/>
         <File path="F:\github\TesterFPGA\TesterFPGA\src\FPGA_tester\src\uart_rx.sv" type="verilog"/>
         <File path="F:\github\TesterFPGA\TesterFPGA\src\FPGA_tester\src\uart_tx.sv" type="verilog"/>
         <File path="F:\github\TesterFPGA\TesterFPGA\src\FPGA_tester\src\uart_tx_tb.sv" type="verilog"/>

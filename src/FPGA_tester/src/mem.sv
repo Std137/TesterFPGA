@@ -17,14 +17,15 @@ always_ff @(posedge in_clk)
     if(!in_rst)
       begin
           mem_wrt_rd <= '0;
-          mem_registr <= '0;
+          mem_registr <= '1;
       end
     else
       if (mem_wrt_en)
         begin
           mem_registr <= in_mem;
-          mem_wrt_rd <= 1;
+          mem_wrt_rd <= '1;
         end
+      else mem_wrt_rd <= '0;
   end
 
 endmodule

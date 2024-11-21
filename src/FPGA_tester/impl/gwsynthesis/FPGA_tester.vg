@@ -1,7 +1,7 @@
 //
 //Written by GowinSynthesis
 //Tool Version "V1.9.9.03 (64-bit)"
-//Sun Nov 17 01:25:47 2024
+//Mon Nov 18 04:30:27 2024
 
 //Source file index table:
 //file0 "\F:/github/TesterFPGA/TesterFPGA/src/FPGA_tester/src/fsm.sv"
@@ -13,9 +13,10 @@
 //file6 "\F:/github/TesterFPGA/TesterFPGA/src/FPGA_tester/src/reset.sv"
 //file7 "\F:/github/TesterFPGA/TesterFPGA/src/FPGA_tester/src/reset_tb.sv"
 //file8 "\F:/github/TesterFPGA/TesterFPGA/src/FPGA_tester/src/top.sv"
-//file9 "\F:/github/TesterFPGA/TesterFPGA/src/FPGA_tester/src/uart_rx.sv"
-//file10 "\F:/github/TesterFPGA/TesterFPGA/src/FPGA_tester/src/uart_tx.sv"
-//file11 "\F:/github/TesterFPGA/TesterFPGA/src/FPGA_tester/src/uart_tx_tb.sv"
+//file9 "\F:/github/TesterFPGA/TesterFPGA/src/FPGA_tester/src/top_tb.sv"
+//file10 "\F:/github/TesterFPGA/TesterFPGA/src/FPGA_tester/src/uart_rx.sv"
+//file11 "\F:/github/TesterFPGA/TesterFPGA/src/FPGA_tester/src/uart_tx.sv"
+//file12 "\F:/github/TesterFPGA/TesterFPGA/src/FPGA_tester/src/uart_tx_tb.sv"
 `timescale 100 ps/100 ps
 module uart_rx (
   clk_d,
@@ -96,9 +97,9 @@ defparam n96_s0.INIT=4'hE;
   LUT4 ovf_w_s1 (
     .F(ovf_w_5),
     .I0(count_wait[1]),
-    .I1(count_wait[2]),
-    .I2(count_wait[0]),
-    .I3(count_wait[3]) 
+    .I1(count_wait[3]),
+    .I2(count_wait[2]),
+    .I3(count_wait[0]) 
 );
 defparam ovf_w_s1.INIT=16'h1000;
   LUT4 n128_s1 (
@@ -458,7 +459,7 @@ module uart_tx (
   mem_rd,
   uart_tx_d,
   utx_s_bs,
-  n99_4
+  n98_4
 )
 ;
 input clk_d;
@@ -467,26 +468,24 @@ input stat;
 input [5:0] mem_rd;
 output uart_tx_d;
 output utx_s_bs;
-output n99_4;
-wire n99_3;
-wire n27_4;
-wire n102_4;
+output n98_4;
+wire n98_3;
+wire n26_4;
 wire n101_4;
+wire n100_4;
 wire ovf_w_4;
 wire ovf_w_5;
-wire n63_5;
+wire n62_5;
 wire data_reg_6_12;
-wire n37_5;
 wire n36_5;
 wire n35_5;
 wire n34_5;
 wire n33_5;
 wire n32_5;
-wire n103_10;
+wire n31_5;
+wire n102_10;
 wire ovf_w;
-wire n104_8;
-wire n71_1;
-wire n71_2;
+wire n103_8;
 wire n70_1;
 wire n70_2;
 wire n69_1;
@@ -498,40 +497,42 @@ wire n67_2;
 wire n66_1;
 wire n66_2;
 wire n65_1;
-wire n65_0_COUT;
-wire n72_6;
+wire n65_2;
+wire n64_1;
+wire n64_0_COUT;
+wire n71_6;
 wire [9:0] data_reg;
 wire [7:0] count_wait;
 wire [3:0] count_bit;
 wire VCC;
 wire GND;
-  LUT2 n99_s0 (
-    .F(n99_3),
-    .I0(n99_4),
+  LUT2 n98_s0 (
+    .F(n98_3),
+    .I0(n98_4),
     .I1(stat) 
 );
-defparam n99_s0.INIT=4'hE;
-  LUT2 n27_s1 (
-    .F(n27_4),
+defparam n98_s0.INIT=4'hE;
+  LUT2 n26_s1 (
+    .F(n26_4),
     .I0(stat),
     .I1(utx_s_bs) 
 );
-defparam n27_s1.INIT=4'hB;
-  LUT3 n102_s0 (
-    .F(n102_4),
+defparam n26_s1.INIT=4'hB;
+  LUT3 n101_s0 (
+    .F(n101_4),
     .I0(count_bit[0]),
     .I1(count_bit[1]),
     .I2(count_bit[2]) 
 );
-defparam n102_s0.INIT=8'h78;
-  LUT4 n101_s0 (
-    .F(n101_4),
+defparam n101_s0.INIT=8'h78;
+  LUT4 n100_s0 (
+    .F(n100_4),
     .I0(count_bit[0]),
     .I1(count_bit[1]),
     .I2(count_bit[2]),
     .I3(count_bit[3]) 
 );
-defparam n101_s0.INIT=16'h7F80;
+defparam n100_s0.INIT=16'h7F80;
   LUT4 ovf_w_s1 (
     .F(ovf_w_4),
     .I0(count_wait[4]),
@@ -539,30 +540,30 @@ defparam n101_s0.INIT=16'h7F80;
     .I2(count_wait[6]),
     .I3(count_wait[7]) 
 );
-defparam ovf_w_s1.INIT=16'h8000;
+defparam ovf_w_s1.INIT=16'h4000;
   LUT4 ovf_w_s2 (
     .F(ovf_w_5),
-    .I0(count_wait[2]),
-    .I1(count_wait[3]),
-    .I2(count_wait[0]),
-    .I3(count_wait[1]) 
+    .I0(count_wait[0]),
+    .I1(count_wait[2]),
+    .I2(count_wait[1]),
+    .I3(count_wait[3]) 
 );
 defparam ovf_w_s2.INIT=16'h1000;
-  LUT4 n99_s1 (
-    .F(n99_4),
+  LUT4 n98_s1 (
+    .F(n98_4),
     .I0(count_bit[0]),
     .I1(count_bit[2]),
     .I2(count_bit[1]),
     .I3(count_bit[3]) 
 );
-defparam n99_s1.INIT=16'h1000;
-  LUT3 n63_s1 (
-    .F(n63_5),
+defparam n98_s1.INIT=16'h1000;
+  LUT3 n62_s1 (
+    .F(n62_5),
     .I0(ovf_w_4),
     .I1(ovf_w_5),
     .I2(stat) 
 );
-defparam n63_s1.INIT=8'hF8;
+defparam n62_s1.INIT=8'hF8;
   LUT4 data_reg_6_s5 (
     .F(data_reg_6_12),
     .I0(ovf_w_4),
@@ -571,265 +572,256 @@ defparam n63_s1.INIT=8'hF8;
     .I3(utx_s_bs) 
 );
 defparam data_reg_6_s5.INIT=16'hF8FF;
-  LUT4 n37_s1 (
-    .F(n37_5),
-    .I0(data_reg[0]),
-    .I1(mem_rd[0]),
-    .I2(stat),
-    .I3(utx_s_bs) 
-);
-defparam n37_s1.INIT=16'hCACC;
   LUT4 n36_s1 (
     .F(n36_5),
-    .I0(data_reg[1]),
-    .I1(mem_rd[1]),
+    .I0(data_reg[0]),
+    .I1(mem_rd[0]),
     .I2(stat),
     .I3(utx_s_bs) 
 );
 defparam n36_s1.INIT=16'hCACC;
   LUT4 n35_s1 (
     .F(n35_5),
-    .I0(data_reg[2]),
-    .I1(mem_rd[2]),
+    .I0(data_reg[1]),
+    .I1(mem_rd[1]),
     .I2(stat),
     .I3(utx_s_bs) 
 );
 defparam n35_s1.INIT=16'hCACC;
   LUT4 n34_s1 (
     .F(n34_5),
-    .I0(data_reg[3]),
-    .I1(mem_rd[3]),
+    .I0(data_reg[2]),
+    .I1(mem_rd[2]),
     .I2(stat),
     .I3(utx_s_bs) 
 );
 defparam n34_s1.INIT=16'hCACC;
   LUT4 n33_s1 (
     .F(n33_5),
-    .I0(data_reg[4]),
-    .I1(mem_rd[4]),
+    .I0(data_reg[3]),
+    .I1(mem_rd[3]),
     .I2(stat),
     .I3(utx_s_bs) 
 );
 defparam n33_s1.INIT=16'hCACC;
   LUT4 n32_s1 (
     .F(n32_5),
+    .I0(data_reg[4]),
+    .I1(mem_rd[4]),
+    .I2(stat),
+    .I3(utx_s_bs) 
+);
+defparam n32_s1.INIT=16'hCACC;
+  LUT4 n31_s1 (
+    .F(n31_5),
     .I0(data_reg[5]),
     .I1(mem_rd[5]),
     .I2(stat),
     .I3(utx_s_bs) 
 );
-defparam n32_s1.INIT=16'hCACC;
-  LUT4 n103_s2 (
-    .F(n103_10),
+defparam n31_s1.INIT=16'hCACC;
+  LUT4 n102_s2 (
+    .F(n102_10),
     .I0(count_bit[1]),
     .I1(count_bit[0]),
     .I2(ovf_w_4),
     .I3(ovf_w_5) 
 );
-defparam n103_s2.INIT=16'h6AAA;
+defparam n102_s2.INIT=16'h6AAA;
   LUT2 ovf_w_s3 (
     .F(ovf_w),
     .I0(ovf_w_4),
     .I1(ovf_w_5) 
 );
 defparam ovf_w_s3.INIT=4'h8;
-  LUT3 n104_s3 (
-    .F(n104_8),
+  LUT3 n103_s3 (
+    .F(n103_8),
     .I0(count_bit[0]),
     .I1(ovf_w_4),
     .I2(ovf_w_5) 
 );
-defparam n104_s3.INIT=8'h6A;
+defparam n103_s3.INIT=8'h6A;
   DFFSE data_reg_10_s0 (
     .Q(uart_tx_d),
     .D(data_reg[9]),
     .CLK(clk_d),
     .CE(ovf_w),
-    .SET(n27_4) 
+    .SET(n26_4) 
 );
   DFFRE data_reg_9_s0 (
     .Q(data_reg[9]),
     .D(data_reg[8]),
     .CLK(clk_d),
     .CE(ovf_w),
-    .RESET(n27_4) 
+    .RESET(n26_4) 
 );
   DFFRE data_reg_8_s0 (
     .Q(data_reg[8]),
     .D(data_reg[7]),
     .CLK(clk_d),
     .CE(ovf_w),
-    .RESET(n27_4) 
+    .RESET(n26_4) 
 );
   DFFRE data_reg_7_s0 (
     .Q(data_reg[7]),
     .D(data_reg[6]),
     .CLK(clk_d),
     .CE(ovf_w),
-    .RESET(n27_4) 
+    .RESET(n26_4) 
 );
   DFFSE data_reg_0_s0 (
     .Q(data_reg[0]),
     .D(uart_tx_d),
     .CLK(clk_d),
     .CE(ovf_w),
-    .SET(n27_4) 
+    .SET(n26_4) 
 );
   DFFRE count_wait_7_s0 (
     .Q(count_wait[7]),
-    .D(n65_1),
+    .D(n64_1),
     .CLK(clk_d),
     .CE(utx_s_bs),
-    .RESET(n63_5) 
+    .RESET(n62_5) 
 );
   DFFRE count_wait_6_s0 (
     .Q(count_wait[6]),
-    .D(n66_1),
+    .D(n65_1),
     .CLK(clk_d),
     .CE(utx_s_bs),
-    .RESET(n63_5) 
+    .RESET(n62_5) 
 );
   DFFRE count_wait_5_s0 (
     .Q(count_wait[5]),
-    .D(n67_1),
+    .D(n66_1),
     .CLK(clk_d),
     .CE(utx_s_bs),
-    .RESET(n63_5) 
+    .RESET(n62_5) 
 );
   DFFRE count_wait_4_s0 (
     .Q(count_wait[4]),
-    .D(n68_1),
+    .D(n67_1),
     .CLK(clk_d),
     .CE(utx_s_bs),
-    .RESET(n63_5) 
+    .RESET(n62_5) 
 );
   DFFRE count_wait_3_s0 (
     .Q(count_wait[3]),
-    .D(n69_1),
+    .D(n68_1),
     .CLK(clk_d),
     .CE(utx_s_bs),
-    .RESET(n63_5) 
+    .RESET(n62_5) 
 );
   DFFRE count_wait_2_s0 (
     .Q(count_wait[2]),
-    .D(n70_1),
+    .D(n69_1),
     .CLK(clk_d),
     .CE(utx_s_bs),
-    .RESET(n63_5) 
+    .RESET(n62_5) 
 );
   DFFRE count_wait_1_s0 (
     .Q(count_wait[1]),
-    .D(n71_1),
+    .D(n70_1),
     .CLK(clk_d),
     .CE(utx_s_bs),
-    .RESET(n63_5) 
+    .RESET(n62_5) 
 );
   DFFRE count_wait_0_s0 (
     .Q(count_wait[0]),
-    .D(n72_6),
+    .D(n71_6),
     .CLK(clk_d),
     .CE(utx_s_bs),
-    .RESET(n63_5) 
+    .RESET(n62_5) 
 );
   DFFRE count_bit_3_s0 (
     .Q(count_bit[3]),
-    .D(n101_4),
+    .D(n100_4),
     .CLK(clk_d),
     .CE(ovf_w),
-    .RESET(n99_3) 
+    .RESET(n98_3) 
 );
   DFFRE count_bit_2_s0 (
     .Q(count_bit[2]),
-    .D(n102_4),
+    .D(n101_4),
     .CLK(clk_d),
     .CE(ovf_w),
-    .RESET(n99_3) 
+    .RESET(n98_3) 
 );
   DFFRE stat_s0 (
     .Q(utx_s_bs),
     .D(VCC),
     .CLK(clk_d),
     .CE(utx_s_en),
-    .RESET(n99_3) 
+    .RESET(n98_3) 
 );
   DFFE data_reg_6_s1 (
     .Q(data_reg[6]),
-    .D(n32_5),
+    .D(n31_5),
     .CLK(clk_d),
     .CE(data_reg_6_12) 
 );
 defparam data_reg_6_s1.INIT=1'b0;
   DFFE data_reg_5_s1 (
     .Q(data_reg[5]),
-    .D(n33_5),
+    .D(n32_5),
     .CLK(clk_d),
     .CE(data_reg_6_12) 
 );
 defparam data_reg_5_s1.INIT=1'b0;
   DFFE data_reg_4_s1 (
     .Q(data_reg[4]),
-    .D(n34_5),
+    .D(n33_5),
     .CLK(clk_d),
     .CE(data_reg_6_12) 
 );
 defparam data_reg_4_s1.INIT=1'b0;
   DFFE data_reg_3_s1 (
     .Q(data_reg[3]),
-    .D(n35_5),
+    .D(n34_5),
     .CLK(clk_d),
     .CE(data_reg_6_12) 
 );
 defparam data_reg_3_s1.INIT=1'b0;
   DFFE data_reg_2_s1 (
     .Q(data_reg[2]),
-    .D(n36_5),
+    .D(n35_5),
     .CLK(clk_d),
     .CE(data_reg_6_12) 
 );
 defparam data_reg_2_s1.INIT=1'b0;
   DFFE data_reg_1_s1 (
     .Q(data_reg[1]),
-    .D(n37_5),
+    .D(n36_5),
     .CLK(clk_d),
     .CE(data_reg_6_12) 
 );
 defparam data_reg_1_s1.INIT=1'b0;
   DFFR count_bit_1_s1 (
     .Q(count_bit[1]),
-    .D(n103_10),
+    .D(n102_10),
     .CLK(clk_d),
-    .RESET(n99_3) 
+    .RESET(n98_3) 
 );
 defparam count_bit_1_s1.INIT=1'b0;
   DFFR count_bit_0_s1 (
     .Q(count_bit[0]),
-    .D(n104_8),
+    .D(n103_8),
     .CLK(clk_d),
-    .RESET(n99_3) 
+    .RESET(n98_3) 
 );
 defparam count_bit_0_s1.INIT=1'b0;
-  ALU n71_s (
-    .SUM(n71_1),
-    .COUT(n71_2),
+  ALU n70_s (
+    .SUM(n70_1),
+    .COUT(n70_2),
     .I0(count_wait[1]),
     .I1(count_wait[0]),
     .I3(GND),
     .CIN(GND) 
 );
-defparam n71_s.ALU_MODE=0;
-  ALU n70_s (
-    .SUM(n70_1),
-    .COUT(n70_2),
-    .I0(count_wait[2]),
-    .I1(GND),
-    .I3(GND),
-    .CIN(n71_2) 
-);
 defparam n70_s.ALU_MODE=0;
   ALU n69_s (
     .SUM(n69_1),
     .COUT(n69_2),
-    .I0(count_wait[3]),
+    .I0(count_wait[2]),
     .I1(GND),
     .I3(GND),
     .CIN(n70_2) 
@@ -838,7 +830,7 @@ defparam n69_s.ALU_MODE=0;
   ALU n68_s (
     .SUM(n68_1),
     .COUT(n68_2),
-    .I0(count_wait[4]),
+    .I0(count_wait[3]),
     .I1(GND),
     .I3(GND),
     .CIN(n69_2) 
@@ -847,7 +839,7 @@ defparam n68_s.ALU_MODE=0;
   ALU n67_s (
     .SUM(n67_1),
     .COUT(n67_2),
-    .I0(count_wait[5]),
+    .I0(count_wait[4]),
     .I1(GND),
     .I3(GND),
     .CIN(n68_2) 
@@ -856,7 +848,7 @@ defparam n67_s.ALU_MODE=0;
   ALU n66_s (
     .SUM(n66_1),
     .COUT(n66_2),
-    .I0(count_wait[6]),
+    .I0(count_wait[5]),
     .I1(GND),
     .I3(GND),
     .CIN(n67_2) 
@@ -864,15 +856,24 @@ defparam n67_s.ALU_MODE=0;
 defparam n66_s.ALU_MODE=0;
   ALU n65_s (
     .SUM(n65_1),
-    .COUT(n65_0_COUT),
-    .I0(count_wait[7]),
+    .COUT(n65_2),
+    .I0(count_wait[6]),
     .I1(GND),
     .I3(GND),
     .CIN(n66_2) 
 );
 defparam n65_s.ALU_MODE=0;
-  INV n72_s2 (
-    .O(n72_6),
+  ALU n64_s (
+    .SUM(n64_1),
+    .COUT(n64_0_COUT),
+    .I0(count_wait[7]),
+    .I1(GND),
+    .I3(GND),
+    .CIN(n65_2) 
+);
+defparam n64_s.ALU_MODE=0;
+  INV n71_s2 (
+    .O(n71_6),
     .I(count_wait[0]) 
 );
   VCC VCC_cZ (
@@ -899,53 +900,52 @@ output mem_w_rd;
 output [5:0] mem_rd;
 wire VCC;
 wire GND;
-  DFFRE mem_registr_5_s0 (
+  DFFSE mem_registr_5_s0 (
     .Q(mem_rd[5]),
     .D(mem_wr[5]),
     .CLK(clk_d),
     .CE(n84_3),
-    .RESET(stat) 
+    .SET(stat) 
 );
-  DFFRE mem_registr_4_s0 (
+  DFFSE mem_registr_4_s0 (
     .Q(mem_rd[4]),
     .D(mem_wr[4]),
     .CLK(clk_d),
     .CE(n84_3),
-    .RESET(stat) 
+    .SET(stat) 
 );
-  DFFRE mem_registr_3_s0 (
+  DFFSE mem_registr_3_s0 (
     .Q(mem_rd[3]),
     .D(mem_wr[3]),
     .CLK(clk_d),
     .CE(n84_3),
-    .RESET(stat) 
+    .SET(stat) 
 );
-  DFFRE mem_registr_2_s0 (
+  DFFSE mem_registr_2_s0 (
     .Q(mem_rd[2]),
     .D(mem_wr[2]),
     .CLK(clk_d),
     .CE(n84_3),
-    .RESET(stat) 
+    .SET(stat) 
 );
-  DFFRE mem_registr_1_s0 (
+  DFFSE mem_registr_1_s0 (
     .Q(mem_rd[1]),
     .D(mem_wr[1]),
     .CLK(clk_d),
     .CE(n84_3),
-    .RESET(stat) 
+    .SET(stat) 
 );
-  DFFRE mem_registr_0_s0 (
+  DFFSE mem_registr_0_s0 (
     .Q(mem_rd[0]),
     .D(mem_wr[0]),
     .CLK(clk_d),
     .CE(n84_3),
-    .RESET(stat) 
+    .SET(stat) 
 );
-  DFFRE mem_wrt_rd_s0 (
+  DFFR mem_wrt_rd_s0 (
     .Q(mem_w_rd),
-    .D(VCC),
+    .D(n84_3),
     .CLK(clk_d),
-    .CE(n84_3),
     .RESET(stat) 
 );
   VCC VCC_cZ (
@@ -972,17 +972,17 @@ output stat_reset;
 output stat_switch;
 wire VCC;
 wire GND;
-  DFFR stat_reset_s0 (
+  DFFS stat_reset_s0 (
     .Q(stat_reset),
     .D(key_rst_d),
     .CLK(clk_d),
-    .RESET(stat) 
+    .SET(stat) 
 );
-  DFFR stat_switch_s0 (
+  DFFS stat_switch_s0 (
     .Q(stat_switch),
     .D(key_switch_d),
     .CLK(clk_d),
-    .RESET(stat) 
+    .SET(stat) 
 );
   VCC VCC_cZ (
     .V(VCC)
@@ -1004,41 +1004,41 @@ input [5:0] mem_rd;
 output [5:0] led_d;
 wire VCC;
 wire GND;
-  DFFR led_stat_4_s0 (
+  DFFS led_stat_4_s0 (
     .Q(led_d[4]),
     .D(mem_rd[4]),
     .CLK(clk_d),
-    .RESET(stat) 
+    .SET(stat) 
 );
-  DFFR led_stat_3_s0 (
+  DFFS led_stat_3_s0 (
     .Q(led_d[3]),
     .D(mem_rd[3]),
     .CLK(clk_d),
-    .RESET(stat) 
+    .SET(stat) 
 );
-  DFFR led_stat_2_s0 (
+  DFFS led_stat_2_s0 (
     .Q(led_d[2]),
     .D(mem_rd[2]),
     .CLK(clk_d),
-    .RESET(stat) 
+    .SET(stat) 
 );
-  DFFR led_stat_1_s0 (
+  DFFS led_stat_1_s0 (
     .Q(led_d[1]),
     .D(mem_rd[1]),
     .CLK(clk_d),
-    .RESET(stat) 
+    .SET(stat) 
 );
-  DFFR led_stat_0_s0 (
+  DFFS led_stat_0_s0 (
     .Q(led_d[0]),
     .D(mem_rd[0]),
     .CLK(clk_d),
-    .RESET(stat) 
+    .SET(stat) 
 );
-  DFFR led_stat_5_s0 (
+  DFFS led_stat_5_s0 (
     .Q(led_d[5]),
     .D(mem_rd[5]),
     .CLK(clk_d),
-    .RESET(stat) 
+    .SET(stat) 
 );
   VCC VCC_cZ (
     .V(VCC)
@@ -1127,12 +1127,12 @@ module fsm (
   clk_d,
   stat,
   mem_w_rd,
-  n99_4,
+  n98_4,
   utx_s_bs,
   key_switch_d,
   stat_switch,
-  stat_reset,
   key_rst_d,
+  stat_reset,
   urx,
   mem_rd,
   n84_3,
@@ -1144,12 +1144,12 @@ module fsm (
 input clk_d;
 input stat;
 input mem_w_rd;
-input n99_4;
+input n98_4;
 input utx_s_bs;
 input key_switch_d;
 input stat_switch;
-input stat_reset;
 input key_rst_d;
+input stat_reset;
 input [7:0] urx;
 input [5:0] mem_rd;
 output n84_3;
@@ -1259,7 +1259,7 @@ defparam next_state_1_s12.INIT=16'h0700;
 defparam n67_s1.INIT=8'h10;
   LUT4 next_state_2_s17 (
     .F(next_state_2_24),
-    .I0(n99_4),
+    .I0(n98_4),
     .I1(utx_s_bs),
     .I2(current_state[0]),
     .I3(utx_s_en_4) 
@@ -1275,7 +1275,7 @@ defparam next_state_2_s17.INIT=16'h7F00;
 defparam next_state_2_s18.INIT=16'h4000;
   LUT4 next_state_0_s13 (
     .F(next_state_0_18),
-    .I0(n99_4),
+    .I0(n98_4),
     .I1(current_state[0]),
     .I2(current_state[2]),
     .I3(next_state_0_20) 
@@ -1288,7 +1288,7 @@ defparam next_state_0_s13.INIT=16'hBF00;
     .I2(next_state_0_21),
     .I3(next_state_1_20) 
 );
-defparam next_state_0_s14.INIT=16'h0D00;
+defparam next_state_0_s14.INIT=16'h0B00;
   LUT4 next_state_1_s13 (
     .F(next_state_1_19),
     .I0(urx[6]),
@@ -1315,7 +1315,7 @@ defparam utx_s_en_s0.INIT=4'h4;
     .I1(stat_switch),
     .I2(current_state[1]) 
 );
-defparam next_state_2_s19.INIT=8'h0D;
+defparam next_state_2_s19.INIT=8'h0B;
   LUT4 next_state_0_s15 (
     .F(next_state_0_20),
     .I0(mem_w_rd),
@@ -1326,9 +1326,9 @@ defparam next_state_2_s19.INIT=8'h0D;
 defparam next_state_0_s15.INIT=16'hF0BB;
   LUT4 next_state_0_s16 (
     .F(next_state_0_21),
-    .I0(urx[6]),
-    .I1(stat_reset),
-    .I2(key_rst_d),
+    .I0(key_rst_d),
+    .I1(urx[6]),
+    .I2(stat_reset),
     .I3(urx[7]) 
 );
 defparam next_state_0_s16.INIT=16'h00EF;
@@ -1415,7 +1415,7 @@ wire key_rst_d;
 wire key_switch_d;
 wire uart_tx_d;
 wire utx_s_bs;
-wire n99_4;
+wire n98_4;
 wire mem_w_rd;
 wire stat_reset;
 wire stat_switch;
@@ -1486,7 +1486,7 @@ wire GND;
     .mem_rd(mem_rd[5:0]),
     .uart_tx_d(uart_tx_d),
     .utx_s_bs(utx_s_bs),
-    .n99_4(n99_4)
+    .n98_4(n98_4)
 );
   mem mem (
     .clk_d(clk_d),
@@ -1519,12 +1519,12 @@ wire GND;
     .clk_d(clk_d),
     .stat(stat),
     .mem_w_rd(mem_w_rd),
-    .n99_4(n99_4),
+    .n98_4(n98_4),
     .utx_s_bs(utx_s_bs),
     .key_switch_d(key_switch_d),
     .stat_switch(stat_switch),
-    .stat_reset(stat_reset),
     .key_rst_d(key_rst_d),
+    .stat_reset(stat_reset),
     .urx(urx[7:0]),
     .mem_rd(mem_rd[5:0]),
     .n84_3(n84_3),

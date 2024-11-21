@@ -9,7 +9,7 @@ reg [5:0] led_stat;
 
 always_ff @(posedge in_clk)
   begin
-    if (!in_rst) led_stat <= '0;
+    if (!in_rst) led_stat <= '1;
     else led_stat <= in_mem;
   end
 

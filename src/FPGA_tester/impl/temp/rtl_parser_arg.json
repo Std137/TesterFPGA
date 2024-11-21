@@ -38,6 +38,10 @@
    "Type" : "verilog"
   },
   {
+   "Path" : "F:/github/TesterFPGA/TesterFPGA/src/FPGA_tester/src/top_tb.sv",
+   "Type" : "verilog"
+  },
+  {
    "Path" : "F:/github/TesterFPGA/TesterFPGA/src/FPGA_tester/src/uart_rx.sv",
    "Type" : "verilog"
   },
@@ -47,10 +51,6 @@
   },
   {
    "Path" : "F:/github/TesterFPGA/TesterFPGA/src/FPGA_tester/src/uart_tx_tb.sv",
-   "Type" : "verilog"
-  },
-  {
-   "Path" : "F:/github/TesterFPGA/TesterFPGA/src/FPGA_tester/src/top_tb.sv",
    "Type" : "verilog"
   }
  ],

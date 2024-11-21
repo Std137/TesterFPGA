@@ -14,7 +14,7 @@ logic ovf_w, ovf_b, stat;
 
 assign out_rx_data = {data_lth[17],data_lth[15],data_lth[13],data_lth[11],data_lth[9],data_lth[7],data_lth[5],data_lth[3]};
 assign ovf_b = (count_bit == 20);
-assign ovf_w = (count_wait == 121);
+assign ovf_w = (count_wait == 117);
 assign out_rx_ready = (ovf_b&&stat)?'1:'0;
 
 //State mode

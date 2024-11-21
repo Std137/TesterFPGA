@@ -16,7 +16,7 @@ logic ovf_w, ovf_b, stat;
 
 assign out_rx = data_reg[10];
 assign ovf_b = (count_bit == 10);
-assign ovf_w = (count_wait == 243);
+assign ovf_w = (count_wait == 234);
 assign out_utx_bs = stat;
 assign out_utx_rd = (ovf_b&&stat)?'1:'0;
 
